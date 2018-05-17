@@ -15,6 +15,15 @@
                         //coezion2_custom_logo_setup();
                     }
                 ?>
+                <?php 
+                    //print_r("test: ".has_nav_menu( 'navigation-top' ));
+                    //if ( has_nav_menu( 'navigation-top' ) ) : ?>
+			<div class="navigation-top">
+				<div class="wrap">
+					<?php get_template_part( 'template-parts/navigation/navigation', 'top' ); ?>
+				</div><!-- .wrap -->
+			</div><!-- .navigation-top -->
+		<?php //endif; ?>
             </div>
         </header>
         <div class="site-content-contain">
