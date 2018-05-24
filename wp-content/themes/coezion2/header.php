@@ -17,7 +17,9 @@
                 ?>
                 <?php
                     // print_r("test: ".has_nav_menu( 'navigation-top' ));
-                    // if ( has_nav_menu( 'navigation-top' ) ) : ?>
+                    // if ( has_nav_menu( 'navigation-top' ) ) : 
+					// TEST !!!!!
+					?>
 			<div class="navigation-top">
                             <div class="wrap">
                                 <?php get_template_part( 'template-parts/navigation/navigation', 'top' ); ?>
