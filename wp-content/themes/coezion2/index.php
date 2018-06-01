@@ -1,4 +1,4 @@
 <?php
     get_header();
 ?>
-<div>CONTENT TEST</div>
+<div>CONTENT TEST & PUSH to REMOTE</div>

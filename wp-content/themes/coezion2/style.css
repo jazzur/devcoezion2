@@ -7,26 +7,39 @@ header img#logo{
 }
 
 /* Menu */
-.menu ul{
+#mega-menu-wrap-Top{
+    background: none;
+}
+#mega-menu-wrap-Top ul#mega-menu-Top{
     list-style: none;
     display: block;
-    width: 75%;
+    width: 80%;
     margin-left: auto;
     margin-right: auto;
     padding: 0px;
 }
-#top-menu ul li{
+#mega-menu-wrap-Top ul#mega-menu-Top li{
     display: inline-block;
     padding-right: 1em;
     white-space: nowrap;
 }
-#top-menu ul li a{
+#mega-menu-wrap-Top ul#mega-menu-Top li a{
     text-decoration: none;
     font-weight: 400;
     color: #777;
     outline: 0;
     font-size: 0.85em;
     letter-spacing: 3px;
+}
+button.menu-toggle, a.menu-scroll-down{
+    display: none;
+}
+#mega-menu-wrap-Top #mega-menu-Top > li.mega-menu-item > a.mega-menu-link{
+    color: #777;
+}
+#mega-menu-wrap-Top #mega-menu-Top > li.mega-menu-item.mega-current-menu-item > a.mega-menu-link{
+    background: #fff;
+    color: #777;
 }
 /* Fin Menu */
 /*********** Fin GENERAL ************/
