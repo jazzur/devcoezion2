@@ -23,7 +23,6 @@
                                     wp_nav_menu( array( 
                                         'theme_location' => 'Top',
                                         'menu_id' => 'mega-menu-Top',
-                                        //'container_class' => 'navigation-topa3',
                                         'container_id' => 'mega-menu-wrap-Top',
                                         'fallback_cb'=> 'false'
                                     ) ); 
