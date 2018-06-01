@@ -22,12 +22,9 @@
                                 <?php 
                                     wp_nav_menu( array( 
                                         'theme_location' => 'Top',
-                                        'menu' => 'test',
-                                        'menu_class' => 'navigation-topa',
-                                        'menu_id' => 'navigation-topa2',
-                                        'container' => 'div',
-                                        'container_class' => 'navigation-topa3',
-                                        'container_id' => 'navigation-topa4',
+                                        'menu_id' => 'mega-menu-Top',
+                                        //'container_class' => 'navigation-topa3',
+                                        'container_id' => 'mega-menu-wrap-Top',
                                         'fallback_cb'=> 'false'
                                     ) ); 
                                 ?>
