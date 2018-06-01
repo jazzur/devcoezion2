@@ -18,14 +18,25 @@
         if ( has_custom_logo() ) {
             return esc_url( $logo[0] );
         } else {
-            //echo "No logo";
+            echo "There is no logo in the admin panel";
         }
     }
     
+    add_theme_support('menus');
     
     add_action('wp_enqueue_scripts', 'coezion_insert_css_in_head');
     function coezion_insert_css_in_head() {
         wp_register_style('style', get_bloginfo( 'stylesheet_url' ),'',false,'screen');
         wp_enqueue_style( 'style' );
     }
+    
+    function register_my_menus() {
+        //register_nav_menu();
+        register_nav_menus( array(
+            'Top' => __( 'Menu Top' ),
+            'footer-menu' => __( 'Menu Footer' )
+        ));
+    }
+    add_action( 'init', 'register_my_menus' );
+    
 ?>
