@@ -1,11 +1,24 @@
-/*********** GENERAL *************/
+/**** GENERAL ****/
+html, body{
+    margin: 0px;
+}
+/**** Fin GENERAL ****/
+
+/***** HEADER ****/
+div#fond_bois{
+    background-image: url("assets/images/fond_bois_coezion.jpg");
+    height: 50px;
+}
+div.navigation-top #mega-menu-wrap-Top, img{
+    background-color: #fff;
+}
+
 header img#logo{
     display: block;
     width: 37%;
     margin-left: auto;
     margin-right: auto;
 }
-
 /* Menu */
 #mega-menu-wrap-Top{
     background: none;
@@ -42,4 +55,4 @@ button.menu-toggle, a.menu-scroll-down{
     color: #777;
 }
 /* Fin Menu */
-/*********** Fin GENERAL ************/
+/***** FIN HEADER ****/
