@@ -1,4 +1,4 @@
-<?php
-    get_header();
+<?php	 
+    define('WP_USE_THEMES', true);	
+    require( dirname( __FILE__ ) . '/wp-blog-header.php' );
 ?>
-<div>CONTENT TEST & PUSH to REMOTE</div>
