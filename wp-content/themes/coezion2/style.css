@@ -29,7 +29,7 @@ header img#logo{
 #mega-menu-wrap-Top ul#mega-menu-Top{
     list-style: none;
     display: block;
-    width: 80%;
+    width: 86%;
     margin-left: auto;
     margin-right: auto;
     padding: 0px;
@@ -53,9 +53,18 @@ button.menu-toggle, a.menu-scroll-down{
 #mega-menu-wrap-Top #mega-menu-Top > li.mega-menu-item > a.mega-menu-link{
     color: #777;
 }
-#mega-menu-wrap-Top #mega-menu-Top > li.mega-menu-item.mega-current-menu-item > a.mega-menu-link{
-    background: #fff;
+#mega-menu-wrap-Top #mega-menu-Top > li.mega-menu-item.mega-current-menu-item > a.mega-menu-link, 
+#mega-menu-wrap-Top #mega-menu-Top > li.mega-menu-flyout ul.mega-sub-menu li.mega-menu-item a.mega-menu-link{
+    background-color: #fff;
     color: #777;
+}
+#mega-menu-wrap-Top #mega-menu-Top > li.mega-menu-flyout ul.mega-sub-menu{
+    width: auto;
+}
+#mega-menu-wrap-Top #mega-menu-Top > li.mega-menu-item > a.mega-menu-link:hover,
+#mega-menu-wrap-Top #mega-menu-Top > li.mega-menu-item > a.mega-menu-link:active{
+    background-color: #ddd;
+    color: #666;
 }
 /* Fin Menu */
 /***** FIN HEADER ****/
