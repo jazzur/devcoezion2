@@ -16,5 +16,3 @@
 <div id="fond_bois"></div>
 <?php
 get_footer();
-
-
