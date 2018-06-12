@@ -53,18 +53,36 @@ button.menu-toggle, a.menu-scroll-down{
 #mega-menu-wrap-Top #mega-menu-Top > li.mega-menu-item > a.mega-menu-link{
     color: #777;
 }
-#mega-menu-wrap-Top #mega-menu-Top > li.mega-menu-item.mega-current-menu-item > a.mega-menu-link, 
 #mega-menu-wrap-Top #mega-menu-Top > li.mega-menu-flyout ul.mega-sub-menu li.mega-menu-item a.mega-menu-link{
     background-color: #fff;
     color: #777;
 }
 #mega-menu-wrap-Top #mega-menu-Top > li.mega-menu-flyout ul.mega-sub-menu{
     width: auto;
+    min-width: 100%;
 }
-#mega-menu-wrap-Top #mega-menu-Top > li.mega-menu-item > a.mega-menu-link:hover,
-#mega-menu-wrap-Top #mega-menu-Top > li.mega-menu-item > a.mega-menu-link:active{
-    background-color: #ddd;
-    color: #666;
+#mega-menu-wrap-Top #mega-menu-Top > li.mega-menu-flyout ul.mega-sub-menu li.mega-menu-item a.mega-menu-link:hover{
+    background-color: #fff;
+    font-weight: normal;
+    text-decoration: none;
+    color: pink;
+}
+#mega-menu-wrap-Top #mega-menu-Top > li.mega-menu-item.mega-current-menu-ancestor > a.mega-menu-link, #mega-menu-wrap-Top #mega-menu-Top > li.mega-menu-item.mega-current-page-ancestor > a.mega-menu-link{
+    background: #fff;
+    color: pink;
+    font-weight: normal;
+    text-decoration: none;
+}
+#mega-menu-wrap-Top #mega-menu-Top > li.mega-menu-item > a.mega-menu-link:hover{
+    background-color: #fff;
+    color: pink;
+}
+#mega-menu-wrap-Top #mega-menu-Top > li.mega-menu-item.mega-current-menu-item > a.mega-menu-link{
+    background-color: #fff;
+    color: pink;
+    font-weight: normal;
+    text-decoration: none;
+    border-color: #fff;
 }
 /* Fin Menu */
 /***** FIN HEADER ****/
