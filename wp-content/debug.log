@@ -9,3 +9,4 @@
 [07-Jun-2018 17:27:58 UTC] PHP Warning:  require(/home/coezion/coezionDev/wp-content/themes/coezion2/wp-blog-header.php): failed to open stream: No such file or directory in /home/coezion/coezionDev/wp-content/themes/coezion2/index.php on line 17
 [07-Jun-2018 17:27:58 UTC] PHP Warning:  require(/home/coezion/coezionDev/wp-content/themes/coezion2/wp-blog-header.php): failed to open stream: No such file or directory in /home/coezion/coezionDev/wp-content/themes/coezion2/index.php on line 17
 [07-Jun-2018 17:27:58 UTC] PHP Fatal error:  require(): Failed opening required '/home/coezion/coezionDev/wp-content/themes/coezion2/wp-blog-header.php' (include_path='.:/usr/local/php5.6/lib/php') in /home/coezion/coezionDev/wp-content/themes/coezion2/index.php on line 17
+[11-Jun-2018 23:42:04 UTC] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in /home/coezion/coezionDev/wp-content/themes/coezion2/index.php on line 3
