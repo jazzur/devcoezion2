@@ -1,5 +1,4 @@
 <?php
-    define('WP_USE_THEMES', true);
     get_header();
 ?>
 <div id="fond_bois"></div>
