@@ -1,4 +1,7 @@
 <?php
+/*
+ * Template Name: offre
+ */
     get_header();
 ?>
 <div id="fond_bois"></div>
