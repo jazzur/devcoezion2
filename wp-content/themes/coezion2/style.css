@@ -2077,7 +2077,7 @@ button.menu-toggle, a.menu-scroll-down{
 			}
 
 			#main-wrapper {
-				/*padding: 6em 0 6em 0;*/
+				padding: 6em 0 6em 0;
 
 			}
 
@@ -2700,8 +2700,8 @@ button.menu-toggle, a.menu-scroll-down{
 			}
 
 				#sidebar > section, #sidebar > article {
-					margin: 4em 0 0 0 !important;
-					padding: 4em 0 0 0 !important;
+					/*margin: 4em 0 0 0 !important;
+					padding: 4em 0 0 0 !important;*/
 				}
 
 					#sidebar > section:first-child, #sidebar > article:first-child {
