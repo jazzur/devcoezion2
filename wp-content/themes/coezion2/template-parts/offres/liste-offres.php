@@ -29,8 +29,6 @@
                         data: data_offres,
                         dataType: "json",
                         success: function(response){
-                            section.html('');
-
                             $.each(response, function(index, offre){
                                 var title = JSON.stringify(offre.Title).replace(/"/g, "") + '<br/>';
                                 var date = JSON.stringify(offre.Date).replace(/"/g, "") + '<br/>';

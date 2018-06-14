@@ -1,11 +1,10 @@
 <div id="main-wrapper">
     <div id="main" class="container">
-        <div id="liste-offres">
-            <section id="offres">
-            </section>
+        <section id="offre">
+        </section>
             <script>
                 var $ = jQuery;
-                var section = $("section#offres");
+                var section = $("section#offre");
 
                 var data_offres = {
                     "CompanyId": 27,
@@ -24,7 +23,6 @@
                         data: data_offres,
                         dataType: "json",
                         success: function(response){
-                            section.html('');
                             var loffre;
                             
                             $.each(response, function(index, offre){
@@ -47,14 +45,13 @@
                                     '<center><a href="espace-recrutement.php" class="button"> Postuler</a></center>' +
                                 '</div>';
 
-                            section.prepend(JSON.stringify(details_offre).replace(/\\/g, ""));
+                            section.prepend((JSON.stringify(details_offre).replace(/\\/g, "")).replace(/"/g, ""));
                         },
                         error: function(e){
                             console.log("Erreur: ", e);
                         }
                     });
                 });
-            </script>
-        </div>
+        </script>
     </div>
 </div>

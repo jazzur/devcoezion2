@@ -1,8 +1,7 @@
 <?php
     get_header();
 ?>
-<div id="fond_bois"></div>
-<div class="wrap">
+<div class="wrap fond-bois">
     <div id="primary" class="content-area">
         <main id="main" class="site-main" role="main">
             <?php
@@ -12,6 +11,5 @@
     </div>
     <?php //get_sidebar(); ?>
 </div><!-- .wrap -->
-<div id="fond_bois"></div>
 <?php
 get_footer();

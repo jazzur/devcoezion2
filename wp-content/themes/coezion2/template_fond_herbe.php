@@ -4,8 +4,7 @@
  */
     get_header();
 ?>
-<div id="fond_herbe"></div>
-<div class="wrap">
+<div class="wrap fond-herbe">
     <div id="primary" class="content-area">
         <main id="main" class="site-main" role="main">
             <?php
@@ -15,7 +14,6 @@
     </div>
     <?php //get_sidebar(); ?>
 </div><!-- .wrap -->
-<div id="fond_herbe"></div>
 <?php
     get_footer();
 ?>

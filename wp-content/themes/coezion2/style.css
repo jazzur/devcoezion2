@@ -87,7 +87,7 @@ button.menu-toggle, a.menu-scroll-down{
 /***** FIN HEADER ****/
 
 /***** CONTENT ****/
-#content{
+#content div.fond-bois{
     min-width: 100%;
     min-height: 100%;
     width: auto;
@@ -96,11 +96,33 @@ button.menu-toggle, a.menu-scroll-down{
     background-size: cover;
     margin: 0 auto;
     background-image: url(assets/images/fond_bois_coezion.jpg);
+    background-attachment: fixed;
+    padding: 50px 0px;
+}
+#content div.fond-herbe{
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    background-size: cover;
+    margin: 0 auto;
+    background-image: url(assets/images/herbe_.jpg);
+    background-attachment: fixed;
+    padding: 50px 0px;
+}
+article{
+    margin-bottom: 0px;
 }
 section#offres{
     display: flex;
     flex: auto;
     flex-wrap: wrap;
+}
+.s_1F9E007A {
+    telerik-style-type: local;
+    font-weight: bold;
+    color: #0070C0;
 }
 /* Offres */
 #main.liste-offres-tmp #main-wrapper{
