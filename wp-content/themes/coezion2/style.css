@@ -97,6 +97,11 @@ button.menu-toggle, a.menu-scroll-down{
     margin: 0 auto;
     background-image: url(assets/images/fond_bois_coezion.jpg);
 }
+section#offres{
+    display: flex;
+    flex: auto;
+    flex-wrap: wrap;
+}
 /***** FIN CONTENT ****/
 
 
