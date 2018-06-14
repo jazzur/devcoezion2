@@ -87,7 +87,7 @@ button.menu-toggle, a.menu-scroll-down{
 /***** FIN HEADER ****/
 
 /***** CONTENT ****/
-#content {
+#content{
     min-width: 100%;
     min-height: 100%;
     width: auto;
@@ -102,6 +102,44 @@ section#offres{
     flex: auto;
     flex-wrap: wrap;
 }
+/* Offres */
+#main.liste-offres-tmp #main-wrapper{
+    padding: 0px;
+}
+center#details-offre{
+    margin-top: 12px;
+}
+#details-offre .NormalWeb{
+    margin-top: 6.66px;
+    margin-bottom: 6.66px;
+    border-collapse: collapse;
+    line-height: 1.15;
+}
+#details-offre span{
+    font-family: 'Calibri';
+    font-size: 13.3333333333333px;
+}
+#details-offre li{
+   margin-left: 24px;
+    text-indent: 0px;
+    font-family: 'Symbol';
+    font-style: Normal;
+    font-weight: normal;
+    font-size: 13.3333333333333px;
+    color: #000000;
+}
+#details-offre li .Normal{
+    margin-top: 6.66666666666667px;
+    margin-right: 0px;
+    margin-bottom: 6.66666666666667px;
+    line-height: 1;
+    font-family: 'Verdana';
+    font-style: Normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: #000000;
+}
+/* Fin Offres */
 /***** FIN CONTENT ****/
 
 

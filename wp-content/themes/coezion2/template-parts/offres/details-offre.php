@@ -32,7 +32,22 @@
                                     loffre = offre;
                                 }
                             });
-                            section.prepend(JSON.stringify(loffre));
+                            
+                            var details_offre = '<div id="details-offre"><center><h1>' + JSON.stringify(loffre.Title).replace(/\"/g, "") + '</h1></center><br/>' +
+                                    '</br></br>' +
+                                    '<strong> Descriptif : </strong>' +
+                                    JSON.stringify(loffre.HTMLDescription).replace(/\"/g, "")
+                                    '</br></br>' +
+                                    '<br/></br>' +
+                                    '<div class="row">' +
+                                        '<div class="6u 12u (mobile)" >' +
+                                            '<center><a href="poster-ingenieur.php" class="button"> Coopter un candidat</a></center>' +
+                                        '</div>' +
+                                    '<div class="6u 12u (mobile)" >' +
+                                    '<center><a href="espace-recrutement.php" class="button"> Postuler</a></center>' +
+                                '</div>';
+
+                            section.prepend(JSON.stringify(details_offre).replace(/\\/g, ""));
                         },
                         error: function(e){
                             console.log("Erreur: ", e);

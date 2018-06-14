@@ -18,4 +18,5 @@
 </div><!-- .wrap -->
 <div id="fond_bois"></div>
 <?php
-get_footer();
+    get_footer();
+?>
