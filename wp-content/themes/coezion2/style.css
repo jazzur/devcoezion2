@@ -92,6 +92,7 @@ button.menu-toggle, a.menu-scroll-down{
 }
 #mega-menu-wrap-Top #mega-menu-Top li.mega-menu-item-has-children > a.mega-menu-link:after{
     content: "";
+    display: none;
 }
 #mega-menu-wrap-Top #mega-menu-Top li.mega-menu-item-has-children span.arrow{
     width: 4%;
