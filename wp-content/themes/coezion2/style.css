@@ -169,6 +169,7 @@ section#offres{
     font-weight: bold;
     color: #0070C0;
 }
+
 /* Offres */
 #main.liste-offres-tmp #main-wrapper{
     padding: 0px;
@@ -207,6 +208,16 @@ center#details-offre{
     color: #000000;
 }
 /* Fin Offres */
+
+.row.home-buttons{
+    display: inline-flex;
+    flex-wrap: wrap;
+}
+@media screen and (max-width: 736px) {
+    .row.home-buttons .mobile{
+        min-width: 150px;
+    }
+}
 /***** FIN CONTENT ****/
 
 
