@@ -116,7 +116,6 @@ button.menu-toggle, a.menu-scroll-down{
     }
     #mega-menu-wrap-Top .mega-menu-toggle + #mega-menu-Top {
         width: 98%;
-        display: flex;
         flex-wrap: wrap;
     }
     #mega-menu-wrap-Top #mega-menu-Top > li.mega-menu-item > a.mega-menu-link{
