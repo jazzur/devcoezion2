@@ -13,8 +13,7 @@
             ?>
         </main>
     </div>
-    <?php //get_sidebar(); ?>
-</div><!-- .wrap -->
+</div>
 <?php
     get_footer();
 ?>
