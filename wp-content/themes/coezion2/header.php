@@ -8,6 +8,7 @@
         <script>
             var $ = jQuery;
             $(document).ready(function(){
+                // Manage Menu
                 $('.mega-menu-wrap .mega-menu-toggle').click(function(){
                     var menu_button = $("#mega-menu-wrap-Top .mega-menu-toggle + #mega-menu-Top");
                     menu_button.toggle("slow");                    
@@ -21,6 +22,20 @@
                     var show_sub_menu = $(this).find('ul.mega-sub-menu');
                     show_sub_menu.toggle("slow");
                 })
+
+                // Fix Menu
+                var header = $("div#navigation-top");
+                var headerOffsetTop = header[0].offsetTop; 
+                function scrolled(){
+                	var currentScroll = document.body.scrollTop || document.documentElement.scrollTop;
+
+                	if(currentScroll >= headerOffsetTop){
+                		header.addClass("fixed");
+                	}else if(currentScroll < headerOffsetTop){
+						header.removeClass("fixed");
+                	}
+                }
+                addEventListener("scroll", scrolled, false);
             })
         </script>
     </head>
@@ -35,17 +50,17 @@
                 <?php
                     if ( has_nav_menu( 'Top' ) ) : 
                 ?>
-			<div class="navigation-top">
-                            <div class="wrap">
-                                <?php 
-                                    wp_nav_menu( array( 
-                                        'theme_location' => 'Top',
-                                        'menu_id' => 'mega-menu-Top',
-                                        'container_id' => 'mega-menu-wrap-Top',
-                                        'fallback_cb'=> 'false'
-                                    ) ); 
-                                ?>
-                            </div>
+			<div class="navigation-top" id="navigation-top">
+                <div class="wrap">
+                    <?php 
+                        wp_nav_menu( array( 
+                            'theme_location' => 'Top',
+                            'menu_id' => 'mega-menu-Top',
+                            'container_id' => 'mega-menu-wrap-Top',
+                            'fallback_cb'=> 'false'
+                        ) ); 
+                    ?>
+                </div>
 			</div>
 		<?php endif; ?>
             </div>
