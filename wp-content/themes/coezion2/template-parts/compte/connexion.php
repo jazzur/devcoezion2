@@ -61,7 +61,7 @@ if(isset($_POST['connexion'])){
 get_header();
 ?>
 
-<section class="page col-lg-12">
+<section class="page col-lg-12" id="main-wrapper">
 	<section class="connexion_normal col-lg-8 col-lg-push-2">
 		<h1>Connectez vous et gérer vos candidatures </h1>
 		<hr/>

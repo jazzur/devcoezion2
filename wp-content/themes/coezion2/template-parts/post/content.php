@@ -9,5 +9,5 @@
                 )
             );
         ?>
-    </div><!-- .entry-content -->
-</article><!-- #post-## -->
+    </div>
+</article>

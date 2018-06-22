@@ -102,7 +102,7 @@ $competencesTab = fonctionCRM::getCompetences($params);
 $experiences = fonctionCRM::getExperiences();
 $civility = fonctionCRM::getCivilities();
 ?>
-<section class="page col-lg-12">
+<div id="main-wrapper">
 	<section class="col-lg-8 col-lg-push-2">
 		<h1 class="titre_page">Inscription</h1>
 		<form action="<?php echo $_SERVER['REQUEST_URI'];?>" method="post" class="form_inscr col-lg-10" enctype="multipart/form-data" >
@@ -177,8 +177,7 @@ $civility = fonctionCRM::getCivilities();
 			</section>		
 		</form>
 	</section>
-</section>
-
+</div>
 <script>
 jQuery(function($){
 
