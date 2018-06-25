@@ -1306,10 +1306,6 @@
 }
 /* Sections/Article */
 
-	section, article {
-		margin-bottom: 3em;
-	}
-
 	section > :last-child,
 	article > :last-child,
 	section:last-child,
@@ -2850,12 +2846,12 @@ margin-left: -5%;
 .mon_avatar{
 	border-radius: 20px;
 }
-.avatar_sub{
-  /*  */  width: 62%;
-    /* background-color: red; */
+input.avatar_sub{
+ 	width: 62%;
+    background-color: red;
     margin-top: 13% !important;
     height: 30px;
-	    /* display: none; */
+	display: none;
 }
 .affiche{
     opacity: 0.7 !important;
@@ -2959,7 +2955,33 @@ margin-bottom: 6%;
 .coordonnees li{
 	list-style:none;
 }
-
+.btn-primary {
+    color: white !important;
+    margin-top: 1% !important;
+    border-color: #e82e2b !important;
+    background-color: #394B59 !important;
+}
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
 /*******************fin profil***********************/
 
 /* Fin main */
