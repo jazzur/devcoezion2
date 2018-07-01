@@ -51,10 +51,10 @@ if(isset($_POST['connexion'])){
 		$_SESSION['mobile'] =  $codeErrorSave->Mobile;
 		
 		if($_SESSION['id'] != ""){
-			header("Location: http://dev-wordp.qualis-tt.fr/mon-compte/");
+			header("Location: http://localhost/devcoezion2/index.php/mon-compte/");
 		}
 		if($_SESSION['id'] != "" && $connexion_annonce != ""){
-			header("Location: http://dev-wordp.qualis-tt.fr/detail-annonce/?id=".$connexion_annonce);
+			header("Location: http://localhost/devcoezion2/index.php/repondre-aux-offres/details-offre/?id=".$connexion_annonce);
 		}
 	}
 } 

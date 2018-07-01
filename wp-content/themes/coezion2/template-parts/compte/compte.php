@@ -2,102 +2,28 @@
 /*
 Template Name: Compte
 */
-
-if(isset($_SESSION['id']) == 0){
-//	header('Location: http://dev-wordp.qualis-tt.fr/');
-}
-get_header();
-if(isset($_POST['avatar_sub'])){
-	if(!empty($_FILES['avatar'])){
-			
-		$image = $_FILES['avatar'];
-		$extension = strtolower(substr($image['name'],-3));
-		$nomImage = $_SESSION['id'].$image['name'];
-		
-		$allow_extension = array("jpg", "png");
-		$adresse_avatar = get_stylesheet_directory().'/assets/images/profile/'.$nomImage;
-		$adresse_avatar_min = get_stylesheet_directory().'/assets/images/profile/miniature';
-		
-		if(in_array($extension, $allow_extension)){
-			move_uploaded_file($image['tmp_name'],$adresse_avatar);
-		
-			Img::creerMin($adresse_avatar, $adresse_avatar_min ,$nomImage,145, 145 );
-			Img::convertirJPG($adresse_avatar);
-				
-			$dataInFile = file_get_contents($adresse_avatar);
-			$avatar64 = base64_encode($dataInFile);
-		// echo $avatar64;
-			//enregistrement dans CRM
-			$dataavatar = [
-				"Id" => $_SESSION['id'],
-				"Civility" => $_SESSION['civil'],
-				"FirstName"=> $_SESSION['prenom'],
-				"LastName" => $_SESSION['nom'],
-				"Email" =>	$_SESSION['mail'],
-				"Password" => $_SESSION['mdp'],
-				"Address" =>  $_SESSION['addresse'],
-				"City" => $_SESSION['ville'],
-				"Mobile" => $_SESSION['mobile'],
-				"PostalCode" => $_SESSION['cp'],
-				"Disponibility" => $_SESSION['dispo'],
-				"Competencies" => $_SESSION['competence'],
-				"Announces" => $_SESSION['annonce'],
-				"WantedSalary" => $_SESSION['salaire'],
-				"ExperienceYears" => $_SESSION['expe'],
-				"CVFileName" => $_SESSION['cv'],
-				"AvatarFileName" =>$nomImage,
-				"AvatarEncodedBase64FileContent" =>$avatar64
-			];
-			// var_dump($dataavatar);
-			$resAvatar = fonctionCRM::saveAvatar($dataavatar);
-			
-			// var_dump($resAvatar);
-			echo '<section class="alert alert-success">Votre photo a bien été modifiée ! </section>';
-			$_SESSION['avatar'] = $nomImage;
-			// $session->set('avatar', $nomImage);
-			// header('Refresh:3; URL=http://dev-wordp.qualis-tt.fr/mon-compte');
-
-		}else{
-			echo  '<section class="alert alert-warning">Votre fichier n\'est pas une image </section>';
-		}
-	}
-}
-$experiences = fonctionCRM::getExperiences();		
-	// var_dump($experiences);
-
-if(isset($_POST['modifier_coord'])){
-	$datacoordonnees = [
-		'Id' => $_SESSION['id'],
-		'Civility' => $_POST['civilite'],
-		'FirstName'=> $_POST['prenom'],
-		'LastName' => $_POST['nom'],
-		'Email' =>	$_POST['mail'],
-		'Password' => $_POST['mdp'],
-		'Address' =>  $_POST['adresse'],
-		'City' => $_POST['ville'],
-		'Mobile' => $_POST['mobile'],
-		'PostalCode' => $_POST['cp'],
-		'Disponibility' => $_POST['dispo'],
-		'Competencies' => $_POST['competence'],
-		'Announces' => $_SESSION['annonce'],
-		'WantedSalary' => $_POST['salaire'],
-		'ExperienceYears' => $_POST['expe'],
-		'CVFileName' => $_SESSION['cv'],
-		'AvatarFileName' => $_SESSION['avatar'],
-		"AvatarEncodedBase64FileContent" => $_SESSION['avatarcode']
-	];
-	// var_dump($datacoordonnees);
-	$resAvatar = fonctionCRM::saveAvatar($datacoordonnees);
-
-}
-
-// var_dump($_SESSION);
 ?>
-
+<script>
+	var $ = jQuery;
+	$("#mail")[0].value = data.Email;
+	if(<?php $_SESSION['mail'] ?> == $("#mdp")[0].value && <?php $_SESSION['mdp'] ?> == $("#mdp")[0].value){
+    	$.ajax({
+    		url: 'connectBDD.php',
+    		data: '',
+    		type: 'POST',
+    		success: function(){
+    			console.log('okok!!');
+    		},
+    		error: function(e){
+    			console.log("Error: ", e);
+    		}
+    	})
+	}
+</script>
 <div id="main-wrapper">
     <section class="menu_gauche col-lg-3">	
     	<ul>	
-    		<li><a href="#coordonnees" class="lien_coord">Mes coordonnées</a></li>		
+    		<li><a href="#coordonnees" class="lien_coord">Mes coordonn&eacute;es</a></li>		
     		<!--<li><a href="#documents" class="lien_docu">Mes documents</a></li>	-->	
     		<li><a href="#offres" class="lien_offre">Mes offres</a></li>		
     		<li><a href="#candidatures" class="lien_candidature">Mes candidatures</a></li>	
@@ -105,7 +31,7 @@ if(isset($_POST['modifier_coord'])){
     </section>
     <section class="contenu_profil col-xs-12 col-sm-12 col-md-12 col-lg-7 col-lg-push-1">	
     	<h2>Bonjour <?=$_SESSION['civil']." ".ucfirst(strtolower($_SESSION['nom']));?></h2>	
-    	<section class="interf_coord">    		
+    	<section class="interf_coord">
     		<section class="avatar col-xs-3 col-xs-push-1 col-sm-5 col-md-push-1 col-md-5 col-lg-3">
     			<section class="avatar_profil">
     				<?php
@@ -120,13 +46,10 @@ if(isset($_POST['modifier_coord'])){
     			
     			</section>
     			
-    			<section class="modifavatar">
-    				<form action="#" method="post" class="form_avatar" enctype="multipart/form-data">
-    					<input type="file" name="avatar" class="bouton_file"  />
-    					<input type="submit" name="avatar_sub" class="avatar_sub" value="Modifier avatar" />
-    				</form>
+    			<section class="modifavatar2">
+					<input type="file" name="avatar" class="bouton_file2" />
+					<input type="submit" name="avatar_sub" id="avatar_sub" class="avatar_sub2" value="Modifier avatar" />
     			</section>
-    			<section style="clear:both;margin-bottom:2%;"></section>
     		</section>
     		
     		<section class="presentation_profil col-xs-12 col-sm-5 col-md-5 col-md-push-1 col-lg-push-1 col-lg-7">						
@@ -134,17 +57,17 @@ if(isset($_POST['modifier_coord'])){
     				<li><strong>Adresse :</strong><?=$_SESSION['addresse']; ?></li>				
     				<li><strong>Code Postal et ville :</strong> <?=$_SESSION['cp']; ?> | <?=$_SESSION['ville']; ?></li>				
     				<li><strong>Mail :</strong> <?=$_SESSION['mail']; ?></li>
-    				<li><strong>Disponibilité :</strong> <?=$_SESSION['dispo']; ?></srong></li>		
-					<li><span class="modifier">Modifier mes coordonnées</span></li>
+    				<li><strong>Disponibilit&eacute; :</strong> <?php $date = new DateTime($_SESSION['dispo']); echo $date->format('Y-m-d'); ?></srong></li>		
+					<li><span class="modifier">Modifier mes coordonn&eacute;es</span></li>
     			</ul>			
     			<section class="dispo">				
     			</section>		
     		</section>			
 			<section class="col-lg-6">
-        		<form action="<?=$_SERVER['REQUEST_URI'];?>" method="post" class="form_modifcoord col-xs-12 col-sm-5 col-md-5 col-lg-10">
-    				<label for="civ">Civilité</label>
+<!--         		<form action="<?php //$_SERVER['REQUEST_URI'];?>" method="post" class="form_modifcoord col-xs-12 col-sm-5 col-md-5 col-lg-10"> -->
+    				<label for="civ">Civilit&eacute;</label>
     				<select id="civ" class="form-control" name="civilite">
-    					<option value="M" selected>Homme</option>
+    					<option value="M." selected>Homme</option>
     					<option value="Mme">Femme</option>	
     				</select>			
         			<section class="col-lg-5">	
@@ -160,7 +83,7 @@ if(isset($_POST['modifier_coord'])){
         				<input type="text" name="nom" id="nom" value="<?=$_SESSION['nom']; ?>" class="form-control" />
         			</section>
         			<section class="col-lg-5 col-lg-push-1">	
-        				<label for="prenom">Prénom </label>
+        				<label for="prenom">Pr&eacute;nom </label>
         				<input type="text" name="prenom" id="prenom"   value="<?=$_SESSION['prenom']; ?>" class="form-control" />
         			</section>
         			<section class="col-lg-11">	
@@ -172,19 +95,19 @@ if(isset($_POST['modifier_coord'])){
         				<input type="text" name="cp" id="cp" class="form-control" value="<?=$_SESSION['cp']; ?>" />	
         			</section>
         			<section class="col-lg-11">							
-        				<label for="competence">Compétences </label>
-        				<input type="text" name="competence" id="competence" class="form-control"  />
+        				<label for="competence">Comp&eacute;tences </label>
+        				<input type="text" name="competence" id="competence" class="form-control" value="<?= implode(",", $_SESSION['competence']) ?>" />
         			</section>	
         			<section class="col-lg-5">	
         				<label for="ville">Ville </label>			
         				<input type="text" name="ville" id="ville" class="form-control" value="<?=$_SESSION['ville']; ?>"  />
         			</section>
         			<section class="col-lg-5 col-lg-push-1">								
-        				<label for="salaire">Salaire souhaité (K)</label>							
+        				<label for="salaire">Salaire souhait&eacute; (K)</label>							
         				<input type="text" name="salaire" id="salaire" class="form-control" value="<?=$_SESSION['salaire']; ?>"/>			
         			</section>
         			<section class="col-lg-5">	
-        				<label for="mobile">Téléphone </label>			
+        				<label for="mobile">T&eacute;l&eacute;phone </label>			
         				<input type="text" name="mobile" id="mobile" class="form-control"  value="<?=$_SESSION['mobile']; ?>" />
         			</section>
         			<section class="col-lg-5 col-lg-push-1">	
@@ -192,44 +115,44 @@ if(isset($_POST['modifier_coord'])){
         				<input type="mail" name="mail" id="mail" class="form-control"  value="<?=$_SESSION['mail']; ?>" />
         			</section>
         			<section class="col-lg-11">				
-        				<label for="dispo">Disponibilité </label>			
-        				<input type="date" name="dispo" id="dispo" class="form-control"  value="<?=$_SESSION['dispo']; ?>" />
+        				<label for="dispo">Disponibilit&eacute; </label>			
+        				<input type="date" name="dispo" id="dispo" class="form-control"  value="<?php $date = new DateTime($_SESSION['dispo']); echo $date->format('Y-m-d'); ?>" />
         			</section>
         			<section class="col-lg-5 col-lg-push-1">								
-        				<label for="expe">Expérience</label>							
+        				<label for="expe">Exp&eacute;rience</label>							
         				<select id="expe" name="expe"  class="form-control" >
         					<option value="<?=$_SESSION['expe'];?>"><?=$_SESSION['expe'];?></option>
         					<?php
         					for($i=0;$i<count($experiences);$i++){ ?>
         						<option value="<?=$experiences[$i]->Name;?>"><?=$experiences[$i]->Name;?></option>
         						<?php 
-        					} ?>
+        					}
+        					?>
         				</select>
         			</section>
         			<section class="col-lg-12 submit_form">				
-        				<input type="submit" name="modifier_coord" class="btn btn-primary" value="Modifier" />
+        				<input type="submit" name="modifier_coord" id="modifier_coord" class="btn btn-primary" value="Modifier" />
+        				<img src="<?= get_stylesheet_directory_uri().'/assets/images/waiting.gif' ?>" alt="waiting..." class="waiting-gif"/>
 					</section>
-	    		</form>
+	    		<!-- </form>-->
 			</section>
 			<section class="col-lg-6"><h4>Mettez à jour votre cv</h4> 
-	    		<form>
-	    			<section class="col-lg-12">
-        				<table class="table-hover table_profil">			
-        					<tr>				
-        						<td>Votre CV</td>				
-        						<td><?=$_SESSION['cv'];?></td>				
-        						<td><a href="">Supprimer</a> | <a href="http://dev-joomla.qualis-tt.fr/modules/mod_inscription_qualis_crm/CRMcv/<?=$_SESSION['cv']; ?>" target="_blank" >Voir</a></td>	
-        						<!--<td><a href="">Supprimer</a> | <a href="<?php//echo $_SERVER['REQUEST_URI'];?>?fichier=cv" >Voir</a></td>			-->		
-        					</tr>	
-        				</table>
-        			</section>	
-        			<section class="col-lg-12">
-            			<label for="cv">Selectionnez votre cv: </label>			
-            			<input type="file" name="cv" id="cv"><br/>
-    				</section>
-        			<input type="submit" value="Télécharger documents" name="submit_documents" class="btn btn-primary" />							
-        		</form>	
-    	</section>		
+    			<section class="col-lg-12">
+    				<table class="table-hover table_profil">			
+    					<tr>				
+    						<td>Votre CV</td>				
+    						<td><?=$_SESSION['cv'];?></td>				
+    						<td><a href="">Supprimer</a> | <a href="http://dev-joomla.qualis-tt.fr/modules/mod_inscription_qualis_crm/CRMcv/<?=$_SESSION['cv']; ?>" target="_blank" >Voir</a></td>	
+    						<!--<td><a href="">Supprimer</a> | <a href="<?php//echo $_SERVER['REQUEST_URI'];?>?fichier=cv" >Voir</a></td>			-->		
+    					</tr>	
+    				</table>
+    			</section>
+    			<section class="col-lg-12">
+        			<label for="cv">Selectionnez votre cv: </label>			
+        			<input type="file" name="cv" id="cv"><br/>
+				</section>
+    			<input type="submit" value="T&eacute;l&eacute;charger documents" id="download-cv" name="submit_documents" class="btn btn-primary" />
+    		</section>		
     	
     
     	<section class="interf_offres">
@@ -238,16 +161,16 @@ if(isset($_POST['modifier_coord'])){
         		<table class="table-hover table_profil">			
         			
         			<tr>				
-        				<th>Intitulé du poste</th>				
-        				<th>Expérience souahitée</th>				
+        				<th>Intitul&eacute; du poste</th>				
+        				<th>Exp&eacute;rience souahit&eacute;e</th>				
         				<th>Date</th>				
         				<th>Ville</th>				
         				<th></th>			
         			</tr>
         			<?php
         			for($i=0;$i<count($_SESSION['annonce']);$i++){ 
-        			$dateEn = explode('T', $_SESSION['annonce'][$i]->Date);
-        			$dateFr = explode('-', $dateEn[0]);
+            			$dateEn = explode('T', $_SESSION['annonce'][$i]->Date);
+            			$dateFr = explode('-', $dateEn[0]);
         			?>
         			<tr>
         				<td><?=$_SESSION['annonce'][$i]->Title;?></td>
@@ -255,11 +178,11 @@ if(isset($_POST['modifier_coord'])){
         				<!--<td><?//=$dateFr[2] .'-'. $dateFr[1] .'-'. $dateFr[0];?></td>-->
         				<td><?=$_SESSION['annonce'][$i]->Date;?></td>
         				<td><?=$_SESSION['annonce'][$i]->Place;?></td>
-        				<td><td><a href="http://dev-wordp.qualis-tt.fr/detail-annonce?id=<?=$_SESSION['annonce'][$i]->AnnouceId;?>">détails</a></td>
+        				<td><td><a href="http://dev-wordp.qualis-tt.fr/detail-annonce?id=<?=$_SESSION['annonce'][$i]->AnnouceId;?>">d&eacute;tails</a></td>
         			</tr>
         			<?php } ?>
         		</table>		
-        		<h3>Ou si aucune préférences</h3>		
+        		<h3>Ou si aucune pr&eacute;f&eacute;rences</h3>		
 			</section>
     		<section class="col-lg-12">
     			<form action="<?php echo $_SERVER['REQUEST_URI'];?>" method="post" class="form_preference">			
@@ -268,11 +191,11 @@ if(isset($_POST['modifier_coord'])){
     					<input id="poste" name="poste" class="form-control" type="text" />
     				</section>
     				<section class="col-lg-6 ">
-    					<label for="salaire">Salaire souhaité</label>			
+    					<label for="salaire">Salaire souhait&eacute;</label>			
     					<input id="salaire" class="form-control" name="salaire" type="text" />
     				</section>
     				<section class="col-lg-6">				
-    					<label for="niveau">Niveau recherché</label>			
+    					<label for="niveau">Niveau recherch&eacute;</label>			
     					<select id="niveau" name="expe"  class="form-control" >
     					<?php
     					for($i=0;$i<count($experiences);$i++){ ?>
@@ -286,7 +209,7 @@ if(isset($_POST['modifier_coord'])){
     					<input id="departement" name="departement" class="form-control" type="text" />
     				</section>
     				<section class="col-lg-12">				
-    					<input name="submit_preference" type="submit" value="Enregistrer préférence" class="btn btn-primary" />
+    					<input name="submit_preference" type="submit" value="Enregistrer pr&eacute;f&eacute;rence" class="btn btn-primary" />
     				</section>
     			</form>
     		</section>
@@ -297,9 +220,9 @@ if(isset($_POST['modifier_coord'])){
     		<h3 class="menu_profil">Mes candidatures</h3>	
     		<table class="table-hover table_profil">			
     			<tr>				
-    				<th>Intitulé du poste</th>				
-    				<th>Domaine d'activité</th>				
-    				<th>Expérience souahitée</th>				
+    				<th>Intitul&eacute; du poste</th>				
+    				<th>Domaine d'activit&eacute;</th>				
+    				<th>Exp&eacute;rience souahit&eacute;e</th>				
     				<th>Date</th>				
     				<th>Ville</th>				
     				<th>Suivi</th>			
@@ -316,7 +239,7 @@ if(isset($_POST['modifier_coord'])){
     				<td><?=$_SESSION['annonce'][$i]->Date;?></td>
     				<td><?=$_SESSION['annonce'][$i]->Place;?></td>
     				<td>Suivi</td>
-    				<td><td><a href="http://dev-wordp.qualis-tt.fr/detail-annonce?id=<?=$_SESSION['annonce'][$i]->AnnouceId;?>">détails</a></td>
+    				<td><td><a href="http://dev-wordp.qualis-tt.fr/detail-annonce?id=<?=$_SESSION['annonce'][$i]->AnnouceId;?>">d&eacute;tails</a></td>
     			</tr>
     			<?php } ?>
     		</table>		
@@ -325,4 +248,145 @@ if(isset($_POST['modifier_coord'])){
     	</section>
     </section>
 </div>
+
+<script>
+	var $ = jQuery;
+	$(document).ready(function(){
+		
+    	$("input#avatar_sub").click(function(){
+    		var modifAvatar = $("input.bouton_file2:file");
+console.log("modif", modifAvatar.val());    		
+    		if(modifAvatar.val() != ""){
+        		var nomImage = modifAvatar.val().split('\\');
+				
+        		$.ajax({
+    			  url: modifAvatar[0].value,
+    			  type: "GET",
+    			  dataType: "binary",
+    			  processData: false,
+    			  success: function(result){
+    				  console.log("result", result)
+    			  }
+    			});
+        		
+        		var dataavatar = {
+        			"Id":<?= $_SESSION['id'] ?>,
+    				"Civility":$("#civ")[0].value,
+        			"FirstName":$("#prenom")[0].value,
+        			"LastName":$("#nom")[0].value,
+        			"Email":$("#mail")[0].value,
+        			"Password":$("#mdp")[0].value,
+        			"Address":$("#adresse")[0].value,
+        			"City":$("#ville")[0].value,
+        			"Mobile":$("#mobile")[0].value,
+        			"PostalCode":$("#cp")[0].value,
+        			"Disponibility":$("#dispo")[0].value || "2018-06-28",
+        			"Competencies":$("#competence")[0].value.split(","),
+        			"Announces":<?php print_r(json_encode(array_values($_SESSION["annonce"]))) ?>,
+        			"WantedSalary":$("#salaire")[0].value,
+        			"ExperienceYears":$("#expe")[0].value,
+        			"CVFileName":"<?= $_SESSION["cv"] ?>",
+        			"AvatarFileName":nomImage[2],
+        			//"AvatarEncodedBase64FileContent":avatar64
+        		};
+    		} else {
+				console.log("Ajoutez un fichier")
+    		}
+		});
+
+        // Click to update coordonnees
+    	$("input#modifier_coord").click(function(){        	
+    		var datacoordonnees = {
+    			"Id":<?= $_SESSION["id"] ?>,
+    			"Civility":$("#civ")[0].value,
+    			"FirstName":$("#prenom")[0].value,
+    			"LastName":$("#nom")[0].value,
+    			"Email":$("#mail")[0].value,
+    			"Password":$("#mdp")[0].value,
+    			"Address":$("#adresse")[0].value,
+    			"City":$("#ville")[0].value,
+    			"Mobile":$("#mobile")[0].value,
+    			"PostalCode":$("#cp")[0].value,
+    			"Disponibility":$("#dispo")[0].value || "2018-06-28",
+    			"Competencies":$("#competence")[0].value.split(","),
+    			"Announces":<?php print_r(json_encode(array_values($_SESSION["annonce"]))) ?>,
+    			"WantedSalary":$("#salaire")[0].value,
+    			"ExperienceYears":$("#expe")[0].value,
+    			"CVFileName":"<?= $_SESSION["cv"] ?>",
+    			"AvatarFileName":"<?= $_SESSION["avatar"] ?>",
+    			"AvatarEncodedBase64FileContent":"<?= $_SESSION["avatarcode"] ?>" || null
+    		};
+
+    		var modifierCoordButton = $("input#modifier_coord");
+    		var waitingGif = $("img.waiting-gif");
+			// SaveCandidate
+            $.ajax({
+                url: "http://api.infolor.fr/api/CRM/SaveCandidate",
+                type: "POST",
+                data: datacoordonnees,
+                dataType: "json",
+                success: function(response){
+					modifierCoordButton.css("display", "none");
+					waitingGif.css("display", "block");
+					
+					var data_string = {"Email": "<?= $_SESSION['mail'] ?>","Password": "<?= $_SESSION['mdp'] ?>" }
+					$.ajax({
+						url: "http://api.infolor.fr/api/CRM/GetCandidateByLogin",
+		                type: "POST",
+		                data: data_string,
+		                dataType: "json",
+		                success: function(response2){
+							//updateFields(response2);
+							modifierCoordButton.css("display", "block");
+							waitingGif.css("display", "none");
+		                },
+		                error: function(e){
+		                    console.log("Erreur2: ", e);
+		                }
+					});
+                },
+                error: function(e){
+                    console.log("Erreur: ", e);
+                }
+            });
+    	});
+
+/*    	function updateFields(data){
+        	var date = data.Disponibility.split("T");
+
+        	$("#civ")[0].value = data.Civility;
+        	$("#prenom")[0].value = data.FirstName;
+        	$("#nom")[0].value = data.LastName;
+			$("#mail")[0].value = data.Email;
+			$("#mdp")[0].value = data.Password;
+			$("#adresse")[0].value = data.Address;
+			$("#ville")[0].value = data.City;
+			$("#mobile")[0].value = data.Mobile;
+			$("#cp")[0].value = data.PostalCode;
+			$("#dispo")[0].value = date[0];
+			$("#competence")[0].value = data.Competencies;
+			$("#salaire")[0].value = data.WantedSalary;
+			$("#expe")[0].value = data.ExperienceYears;
+    	}
+*/
+    	
+		// Update CV
+    	var dataCV = "";// a finir
+    	$("input#download-cv").click(function(){
+			$.ajax({
+				url: "http://api.infolor.fr/api/CRM/UploadCV",
+				type: POST, 
+				data: dataCV,
+				dataType: json,
+				success: function(){
+
+				},
+				error: function(){
+
+				}
+			});
+    	})
+	});
+</script>
+
 <?php get_footer(); ?>

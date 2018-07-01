@@ -3035,6 +3035,11 @@ center#details-offre{
     }
 }
 
+img.waiting-gif{
+	display: none;
+	width: 20%;
+}
+
 /* FOOTER */
 #footer-wrapper {
 	overflow: visible;
