@@ -3036,9 +3036,30 @@ center#details-offre{
 }
 
 img.waiting-gif{
-	display: none;
-	width: 20%;
+    display: none;
+    width: 20%;
+    margin: auto;
 }
+section.submit_form{
+    display: flex;
+    flex-wrap: wrap;
+    height: 50px;
+    margin-bottom: 50px;
+    margin-top: 20px;
+}
+.save-message{
+    margin: auto;
+}
+.save-message.succes{
+    color: green;
+}
+section.modif-coordonnees{
+    margin-top: 20px;
+}
+.avatar_profil{
+    min-height: 130px;
+}
+
 
 /* FOOTER */
 #footer-wrapper {

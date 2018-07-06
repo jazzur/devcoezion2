@@ -141,6 +141,21 @@ class fonctionCRM{
 		// var_dump($codeErrorSave);
 		return $codeErrorSave;
 	}
+	
+    public static function majCv($params){
+		
+		//Appel et paramÃ©trage de l'API	
+		$ch = curl_init('http://api.infolor.fr/api/CRM/UploadCV');	
+		curl_setopt($ch, CURLOPT_POST, true);	
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $params);	
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);	
+		curl_setopt($ch, CURLOPT_HEADER, false);	
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-type: application/json"));
+		$result = curl_exec($ch);	
+		$codeError = json_decode($result);
+
+		return $codeError;
+    }
 }
 
 ?>
