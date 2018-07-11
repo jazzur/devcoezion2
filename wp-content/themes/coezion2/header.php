@@ -38,7 +38,7 @@
                 addEventListener("scroll", scrolled, false);
                 
                 // Deconnexion menu
-                var session = "<?= $_SESSION['id'] ?>";
+                var session = '<?= isset($_SESSION['id'])? $_SESSION['id']:""; ?>';
                 if(session == ""){ $("li.deconnexion-menu").css("display", "none"); }
             })
         </script>

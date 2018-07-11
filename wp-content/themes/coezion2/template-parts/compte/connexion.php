@@ -265,11 +265,12 @@ get_template_part( 'template-parts/post/content', get_post_format() );    // ajo
 </section>
 
 <script>
-jQuery(function($){
-var availableTags =  <?php echo json_encode($competencesTab); ?>;
+/*jQuery(function($){
+var availableTags =  <?php //echo json_encode($competencesTab); ?>;
 
 function split( val ) {
-  return val.split( /,\s*/ );
+  //return val.split( /,\s*/ 
+            /*);
 }
 function extractLast( term ) {
   return split( term ).pop();
@@ -304,8 +305,8 @@ $( "#competence" )
         this.value = terms.join( ", " );
         return false;
       }
-    });*/
-});
+    });
+});*/
 </script>
 <!------------------------- Inscrioption ------------------------->
 
