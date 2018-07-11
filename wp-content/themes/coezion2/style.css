@@ -2130,14 +2130,14 @@
 
 		/* Content */
 
-			#content > > section,
-			#content > > article {
+			#content > section,
+			#content > article {
 				margin: 5em 0 0 0;
 				padding: 5em 0 0 0;
 			}
 
-				#content > > section:first-child,
-				#content > > article:first-child {
+				#content > section:first-child,
+				#content > article:first-child {
 					margin: 0;
 					padding: 0;
 				}
@@ -2838,9 +2838,9 @@ margin-left: -5%;
     margin-right: auto;
 }
 .modifavatar,.icon_modif_avatar{
-	float:left;
-	top:0;
-	position:absolute;
+    float:left;
+    top:0;
+    position:absolute;
 }
 
 .mon_avatar{
@@ -2857,28 +2857,23 @@ input.avatar_sub{
     opacity: 0.7 !important;
 }
 .icon_modif_avatar{
-     width: 50%;
-    background-color: white;
-    margin-top: 22% !important;
-    height: 80px;
-    padding-top: 15px;
+    width: 145px;
+    background-color: #fff;
+    height: 155px;
     opacity: 0;
-    margin-left: -26%;
-	/* display:none; */
+    position: absolute;
+    left: 26px;
+    padding-top: 45px;
 }
 .form_avatar{
     margin-left: 14%;
     float: left;
-    /* margin-top: 20%;  background-color: green;*/
     height: 123px;
-   
     width: 87%;
-    /* margin-bottom: 14%; */
 }
 .bouton_file{
-	/* opacity: 1; */
     line-height: 100px;
-	opacity:0;
+    opacity:0;
 }
 .menu_gauche{
     margin-top: 4%;
@@ -2895,14 +2890,14 @@ input.avatar_sub{
     -webkit-transition: 300ms;
     transition: 300ms;
 }
-.menu_gauche li:hover{
-background-color: #FF663E;
+.menu_gauche ul li a:hover{
+color: pink;
 }
 .menu_gauche ul >li a:before {
 font-family: FontAwesome;
 content: "\f105";
 margin-right: 8px;
-color: #FF663F;
+color: pink;
 }
 
 .menu_gauche ul >li >a {
@@ -2911,7 +2906,7 @@ color: #FF663F;
     line-height: 36px;
     -webkit-transition: 300ms;
     transition: 300ms;
-	color :#737985;
+    color :#737985;
 }
 .menu_profil{
 margin-top: 4%;
@@ -3058,6 +3053,53 @@ section.modif-coordonnees{
 }
 .avatar_profil{
     min-height: 130px;
+}
+#avatar_sub{
+    padding: 5px 5px;
+    left: -12px;
+    font-size: 14.5px;
+    letter-spacing: 0px;
+}
+img#modif_coord{
+    width: 50px;
+    float: right;
+    cursor: pointer;
+}
+form.form_avatar{
+    margin-top: 2em;
+}
+section.modif-coordonnees, section.upload_cv, section.modifavatar2, input#avatar_file{
+    display: none;
+}
+section.modif-coordonnees section{
+    margin-right: 10px;
+}
+.col-lg-9{
+    width: 77.5%;
+}
+ul.coordonnees{
+    margin-bottom: 1em;
+}
+span.modif_cv{
+    cursor: pointer;
+}
+span.modif_cv:hover{
+    color: pink;
+}
+section.interf_offres{
+    margin-bottom: 20px;
+}
+table.table_profil th{
+    font-weight: bold;
+}
+section.avatar_profil{
+    cursor: pointer;
+}
+section.avatar_profil:hover .icon_modif_avatar{
+    opacity: 0.8;
+}
+input#avatar_sub{
+    cursor: pointer;
 }
 
 

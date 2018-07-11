@@ -21,7 +21,7 @@
                 row_menu.click(function(){
                     var show_sub_menu = $(this).find('ul.mega-sub-menu');
                     show_sub_menu.toggle("slow");
-                })
+                });
 
                 // Fix Menu
                 var header = $("div#navigation-top");
