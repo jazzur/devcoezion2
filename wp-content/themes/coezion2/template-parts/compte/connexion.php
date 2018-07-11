@@ -62,7 +62,7 @@ if(isset($_POST['connexion'])){
 /********************* Fin connexion ***********************/
 
 /********************* Inscription ***********************/
-$error = false; 
+//$error = false;
 if(isset($_POST['inscription'])){
     $civilite = htmlentities($_POST['civilite']);
     $nom = htmlentities($_POST['nom']);
@@ -71,7 +71,7 @@ if(isset($_POST['inscription'])){
     $cp = htmlentities($_POST['cp']);
     $ville = htmlentities($_POST['ville']);
     $tel = htmlentities($_POST['phone']);
-    $mail = htmlentities($_POST['mail']);
+    $mail = htmlentities($_POST['email']);
     $competence = htmlentities($_POST['competence']);
     $competences = substr($competence,0,-1);
     $expe = htmlentities($_POST['expe']);
@@ -79,14 +79,14 @@ if(isset($_POST['inscription'])){
     $salaire = htmlentities($_POST['salaire']);
     $mdp = htmlentities($_POST['mdp']);
     $cv = $_FILES["cv"];
-    $uploaddir = get_stylesheet_directory().'/cv/';
+    $uploaddir = get_stylesheet_directory().'/assets/cvCRM/';
 
     if($cv["name"] == ""){
         $error = "Merci de bien vouloir joindre votre CV.";
     }else{
         $uploadfile = $uploaddir . basename($cv['name']);
         if($cv["name"] != ""){
-            move_uploaded_file($cv['tmp_name'], $uploadfile);
+                move_uploaded_file($cv['tmp_name'], $uploadfile);
             $dataInFile = file_get_contents($uploadfile);
             $cv64 = base64_encode($dataInFile);
             $data = ["CompanyId"=>2,"AnnouceId"=>null,"FileName"=>$cv["name"],"EncodedBase64FileContent" =>$cv64];
@@ -97,7 +97,7 @@ if(isset($_POST['inscription'])){
                 "Civility" => $civilite,
                 "FirstName"=> $nom, 
                 "LastName" => $prenom,
-                "Email" =>	$mail,
+                "Email" => $mail,
                 "Password" => $mdp,
                 "Address" =>  $adresse,
                 "City" => $ville,
@@ -124,23 +124,23 @@ if(isset($_POST['inscription'])){
             curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-type: application/json"));
             $resultsave = curl_exec($ch);
             $codeErrorSave = json_decode($resultsave);
-            // var_dump("<br/>enregistrement : ".$resultsave);/**/	
-            echo "<section class='alert alert-success'>F&eacute;licitations ! Vous &ecirc;tes incrit, <a href='http://dev-wordp.qualis-tt.fr/connexion'>Connectez-vous ici </a></section>";
+            print_r($codeErrorSave);
+            //echo "<section class='alert alert-success'>F&eacute;licitations ! Vous &ecirc;tes incrit</section>";
 
-            $sujet = "Bienvenue chez Qualis";  
-            $headers= "MIME-Version: 1.0\n";   
-            $headers.= "From: \"Qualis\" <contact@qualis-tt.fr>\n"; 
-            $headers.= "Content-type: multipart/mixed;\n";   
-            $limite = '_parties_'.md5(uniqid (rand()));   
+            $sujet = "Bienvenue chez Coezzio";
+            $headers= "MIME-Version: 1.0\n";
+            $headers.= "From: \"Coezion\" <contact@coezion.fr>\n";
+            $headers.= "Content-type: multipart/mixed;\n";
+            $limite = '_parties_'.md5(uniqid (rand()));
 
-            $headers.= " boundary=\"----=$limite\"\n\n";   
+            $headers.= " boundary=\"----=$limite\"\n\n";
 
             $texte = "------=$limite\n";   
             $texte.= "Content-type: text/html; charset=\"iso-8859-1\"\n\n";
 
             $texte .= "Bonjour ".$prenom.",<br/>";
-            $texte .= "Voici votre mot de passe : " . $mdp . ", connectez vous Ã  votre compte <a href='http://dev-wordp.qualis-tt.fr/connexion'>ici</a> et optimis&eacute; votre profil.<br/>";
-            $texte .= "Ã€ tout de suite sur Qualis !";
+            $texte .= "Voici votre mot de passe : " . $mdp . ", connectez vous à votre compte <a href='http://dev-wordp.qualis-tt.fr/connexion'>ici</a> et optimis&eacute; votre profil.<br/>";
+            $texte .= "&Agrave; tout de suite sur Qualis !";
             // exit(0);
             mail($mail, $sujet, utf8_decode($texte), $headers);
         }
@@ -152,7 +152,7 @@ $experiences = fonctionCRM::getExperiences();
 $civility = fonctionCRM::getCivilities();
 /********************* Fin Inscription ***********************/
 
-//get_header();
+get_header();
 
 get_template_part( 'template-parts/post/content', get_post_format() );    // ajouter contenu inséré en admin
 ?>
@@ -185,10 +185,9 @@ get_template_part( 'template-parts/post/content', get_post_format() );    // ajo
         <?php //do_action( 'wordpress_social_login' ); ?> 
         <p>Aucune information ne sera partag&eacute;e sans votre consentement</p>
     </section>-->
-<!------------------------- Fin Connexion ------------------------->
+    <!------------------------- Fin Connexion ------------------------->
 
-<!------------------------- Inscrioption ------------------------->
-
+    <!------------------------- Inscrioption ------------------------->
     <section class="inscription col-lg-5 col-lg-push-1">
         <h1 class="titre_page">Vous n'&ecirc;tes pas encore inscrit ?</h1>
         <hr/>
@@ -202,23 +201,23 @@ get_template_part( 'template-parts/post/content', get_post_format() );    // ajo
             </section>
             <section class="col-lg-3">
                 <label for="nom">Nom </label>
-                <input type="text" name="nom" id="nom" placeholder="Jean" class="form-control" />
+                <input type="text" name="nom" id="nom" placeholder="" class="form-control" />
             </section>
             <section class="col-lg-3">
                 <label for="prenom">Pr&eacute;nom </label>
-                <input type="text" name="prenom" id="prenom" class="form-control"  placeholder="Bernard" />
+                <input type="text" name="prenom" id="prenom" class="form-control"  placeholder="" />
             </section>
             <section class="col-lg-3">
                 <label for="mail">E-mail </label>
-                <input type="mail" name="email" id="email" class="form-control"  placeholder="Votre mail" />
+                <input type="mail" name="email" id="email" class="form-control"  placeholder="" />
             </section>
             <section class="col-lg-3">
                 <label for="mdp">Mot de passe </label>
-                <input type="password" name="mdp" id="mdpass" class="form-control"  value="<?=rand()."qua".rand()."lis"; ?>" />
+                <input type="password" name="mdp" id="mdpass" class="form-control"  value="<?=rand()."coe".rand()."zion"; ?>" />
             </section>
             <section class="col-lg-3">
                 <label for="phone">Mobile </label>
-                <input type="tel" name="phone" id="phone" class="form-control" placeholder="06 07 08 09 10" />
+                <input type="tel" name="phone" id="phone" class="form-control" placeholder="" />
             </section>
             <section class="col-lg-9">
                 <label for="adresse">Adresse</label>
@@ -226,7 +225,7 @@ get_template_part( 'template-parts/post/content', get_post_format() );    // ajo
             </section>
             <section class="col-lg-3">
                 <label for="cp">Code Postal </label>
-                <input type="text" name="cp" id="cp" placeholder="75000"  class="form-control"/>
+                <input type="text" name="cp" id="cp" placeholder=""  class="form-control"/>
             </section>
             <section class="col-lg-3">
                 <label for="ville">Ville </label>
