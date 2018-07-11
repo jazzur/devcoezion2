@@ -27,15 +27,19 @@
                 var header = $("div#navigation-top");
                 var headerOffsetTop = header[0].offsetTop; 
                 function scrolled(){
-                	var currentScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                    var currentScroll = document.body.scrollTop || document.documentElement.scrollTop;
 
-                	if(currentScroll >= headerOffsetTop){
-                		header.addClass("fixed");
-                	}else if(currentScroll < headerOffsetTop){
-						header.removeClass("fixed");
-                	}
+                    if(currentScroll >= headerOffsetTop){
+                            header.addClass("fixed");
+                    }else if(currentScroll < headerOffsetTop){
+                                            header.removeClass("fixed");
+                    }
                 }
                 addEventListener("scroll", scrolled, false);
+                
+                // Deconnexion menu
+                var session = "<?= $_SESSION['id'] ?>";
+                if(session == ""){ $("li.deconnexion-menu").css("display", "none"); }
             })
         </script>
     </head>

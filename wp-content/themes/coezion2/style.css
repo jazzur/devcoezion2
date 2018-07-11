@@ -1471,7 +1471,7 @@
 		text-transform: uppercase;
 		color: #888;
 		display: block;
-		margin: 0 0 1em 0;
+		margin: 5px 0;
 	}
 
 	form input[type="text"],
@@ -3071,11 +3071,14 @@ form.form_avatar{
 section.modif-coordonnees, section.upload_cv, section.modifavatar2, input#avatar_file{
     display: none;
 }
-section.modif-coordonnees section{
+section.col-lg-3{
     margin-right: 10px;
 }
-.col-lg-9{
+section.col-lg-9{
     width: 77.5%;
+}
+section.col-lg-6{
+    width: 52%;
 }
 ul.coordonnees{
     margin-bottom: 1em;

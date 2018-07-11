@@ -2,89 +2,85 @@
 /*
 Template Name: Compte
 */
+if(empty($_SESSION) == true){
+    get_template_part( 'template-parts/compte/connexion', get_post_format() );
+}else{
+    get_header();
+    if(isset($_POST['avatar_sub'])){
+        if(!empty($_FILES['avatar'])){
 
-get_header();
-if(isset($_POST['avatar_sub'])){
-    if(!empty($_FILES['avatar'])){
+            $image = $_FILES['avatar'];
+            $extension = strtolower(substr($image['name'],-3));
+            $nomImage = $_SESSION['id'].$image['name'];
 
-        $image = $_FILES['avatar'];
-        $extension = strtolower(substr($image['name'],-3));
-        $nomImage = $_SESSION['id'].$image['name'];
+            $allow_extension = array("jpg", "png");
+            $adresse_avatar = get_stylesheet_directory().'/assets/images/profile/image/'.$nomImage;
+            $adresse_avatar_min = get_stylesheet_directory().'/assets/images/profile/image/miniature';
 
-        $allow_extension = array("jpg", "png");
-        $adresse_avatar = get_stylesheet_directory().'/assets/images/profile/image/'.$nomImage;
-        $adresse_avatar_min = get_stylesheet_directory().'/assets/images/profile/image/miniature';
+            if(in_array($extension, $allow_extension)){
+                move_uploaded_file($image['tmp_name'],$adresse_avatar);
 
-        if(in_array($extension, $allow_extension)){
-            move_uploaded_file($image['tmp_name'],$adresse_avatar);
+                Img::creerMin($adresse_avatar, $adresse_avatar_min ,$nomImage,145, 145 );
+                Img::convertirJPG($adresse_avatar);
 
-            Img::creerMin($adresse_avatar, $adresse_avatar_min ,$nomImage,145, 145 );
-            Img::convertirJPG($adresse_avatar);
+                $dataInFile = file_get_contents($adresse_avatar);
+                $avatar64 = base64_encode($dataInFile);
 
-            $dataInFile = file_get_contents($adresse_avatar);
-            $avatar64 = base64_encode($dataInFile);
-            // echo $avatar64;
-            //enregistrement dans CRM
-            $dataavatar = [
-                "Id" => $_SESSION['id'],
-                "Civility" => $_SESSION['civil'],
-                "FirstName"=> $_SESSION['prenom'],
-                "LastName" => $_SESSION['nom'],
-                "Email" =>	$_SESSION['mail'],
-                "Password" => $_SESSION['mdp'],
-                "Address" =>  $_SESSION['addresse'],
-                "City" => $_SESSION['ville'],
-                "Mobile" => $_SESSION['mobile'],
-                "PostalCode" => $_SESSION['cp'],
-                "Disponibility" => $_SESSION['dispo'],
-                "Competencies" => $_SESSION['competence'],
-                "Announces" => $_SESSION['annonce'],
-                "WantedSalary" => $_SESSION['salaire'],
-                "ExperienceYears" => $_SESSION['expe'],
-                "CVFileName" => $_SESSION['cv'],
-                "AvatarFileName" =>$nomImage,
-                "AvatarEncodedBase64FileContent" =>$avatar64
-            ];
-            // var_dump($dataavatar);
-            $resAvatar = fonctionCRM::saveAvatar($dataavatar);
-                    //print_r(json_encode($dataavatar));
-            // var_dump($resAvatar);
-            echo '<section class="alert alert-success">Votre photo a bien &eacute;t&eacute; modifi&eacute;e ! </section>';
-            $_SESSION['avatar'] = $nomImage;
-            // $session->set('avatar', $nomImage);
-            // header('Refresh:3; URL=http://dev-wordp.qualis-tt.fr/mon-compte');
-
-        }else{
-            echo  '<section class="alert alert-warning">Votre fichier n\'est pas une image </section>';
+                //enregistrement dans CRM
+                $dataavatar = [
+                    "Id" => $_SESSION['id'],
+                    "Civility" => $_SESSION['civil'],
+                    "FirstName"=> $_SESSION['prenom'],
+                    "LastName" => $_SESSION['nom'],
+                    "Email" =>	$_SESSION['mail'],
+                    "Password" => $_SESSION['mdp'],
+                    "Address" =>  $_SESSION['addresse'],
+                    "City" => $_SESSION['ville'],
+                    "Mobile" => $_SESSION['mobile'],
+                    "PostalCode" => $_SESSION['cp'],
+                    "Disponibility" => $_SESSION['dispo'],
+                    "Competencies" => $_SESSION['competence'],
+                    "Announces" => $_SESSION['annonce'],
+                    "WantedSalary" => $_SESSION['salaire'],
+                    "ExperienceYears" => $_SESSION['expe'],
+                    "CVFileName" => $_SESSION['cv'],
+                    "AvatarFileName" =>$nomImage,
+                    "AvatarEncodedBase64FileContent" =>$avatar64
+                ];
+                $resAvatar = fonctionCRM::saveAvatar($dataavatar);
+                //echo '<section class="alert alert-success">Votre photo a bien &eacute;t&eacute; modifi&eacute;e ! </section>';
+                $_SESSION['avatar'] = $nomImage;
+            }else{
+                echo  '<section class="alert alert-warning">Votre fichier n\'est pas une image </section>';
+            }
         }
     }
-}
 
-if(isset($_POST['submit_documents'])){
-    $cv = $_FILES["cv"];
-    $uploaddir = get_stylesheet_directory().'/assets/cvCRM/';
-    if($cv["name"] == ""){
-        $error = "Merci de bien vouloir joindre votre CV.";
-    }else{
-        $uploadfile = $uploaddir . basename(htmlentities($cv['name'], ENT_QUOTES, "UTF-8"));
-        if($cv["name"] != ""){
-            move_uploaded_file($cv['tmp_name'], $uploadfile);
+    if(isset($_POST['submit_documents'])){
+        $cv = $_FILES["cv"];
+        $uploaddir = get_stylesheet_directory().'/assets/cvCRM/';
+        if($cv["name"] == ""){
+            $error = "Merci de bien vouloir joindre votre CV.";
+        }else{
+            $uploadfile = $uploaddir . basename(htmlentities($cv['name'], ENT_QUOTES, "UTF-8"));
+            if($cv["name"] != ""){
+                move_uploaded_file($cv['tmp_name'], $uploadfile);
 
-            $dataInFile = file_get_contents($uploadfile);
+                $dataInFile = file_get_contents($uploadfile);
 
-            $cv64 = base64_encode($dataInFile);
-            $tab = array(2);
-            //echo $cv["name"];
-            //exit(0);
-            $data = ["CompanyId"=>2,"AnnouceId"=>null,"FileName"=>$cv["name"],"EncodedBase64FileContent" =>$cv64];
-            $data_string = json_encode($data);
-            $objetCandidat = fonctionCRM::majCv($data_string);
-            print_r($objetCandidat);
-            
-            $_SESSION['cv'] = $cv['name'];
+                $cv64 = base64_encode($dataInFile);
+                $tab = array(2);
+                //echo $cv["name"];
+                //exit(0);
+                $data = ["CompanyId"=>2,"AnnouceId"=>null,"FileName"=>$cv["name"],"EncodedBase64FileContent" =>$cv64];
+                $data_string = json_encode($data);
+                $objetCandidat = fonctionCRM::majCv($data_string);
+                print_r($objetCandidat);
+
+                $_SESSION['cv'] = $cv['name'];
+            }	
         }	
-    }	
-}
+    }
 
 ?>
 <div id="main-wrapper">
@@ -121,6 +117,7 @@ if(isset($_POST['submit_documents'])){
             </section>
         </section>
         <script>
+            // Manage Avatar
             var avatar = $("section.avatar_profil");
             var choose_file_button = $("input#avatar_file");
             avatar.click(function(){
@@ -177,7 +174,7 @@ if(isset($_POST['submit_documents'])){
             </section>
             <section class="col-lg-3">
                 <label for="mail">E-mail </label>			
-                <input type="mail" name="mail" id="mail" class="form-control"  value="<?=$_SESSION['mail']; ?>" />
+                <input type="mail" name="mail" id="e-mail" class="form-control"  value="<?=$_SESSION['mail']; ?>" />
             </section>
             <section class="col-lg-3">
                 <label for="mdp">Mot de passe</label>
@@ -339,4 +336,7 @@ if(isset($_POST['submit_documents'])){
     </section>
 </div>
 
-<?php get_footer(); ?>
+<?php 
+    get_footer(); 
+}
+?>
