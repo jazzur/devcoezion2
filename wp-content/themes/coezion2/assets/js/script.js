@@ -1,6 +1,6 @@
 var $ = jQuery;
 $(document).ready(function(){
-    // ------------------------------- Click to update coordonnees
+    //  Click to update coordonnees
     $("input#modifier_coord").click(function(){
         var message = "";
         var messageBlock = $(".save-message.coordonnees");
@@ -8,19 +8,19 @@ $(document).ready(function(){
         var waitingGif = $("img.waiting-gif.coordonnees");
 
         var datacoordonnees = {
-            "Civility":$("#civ")[0].value,
-            "FirstName":$("#prenom")[0].value,
-            "LastName":$("#nom")[0].value,
-            "Email":$("#mail")[0].value,
-            "Password":$("#mdp")[0].value,
-            "Address":$("#adresse")[0].value,
-            "City":$("#ville")[0].value,
-            "Mobile":$("#mobile")[0].value,
-            "PostalCode":$("#cp")[0].value,
-            "Disponibility":$("#dispo")[0].value,
-            "Competencies":$("#competence")[0].value.split(","),
-            "WantedSalary":$("#salaire")[0].value,
-            "ExperienceYears":$("#expe")[0].value,
+            "Civility":$("#civ-coord")[0].value,
+            "FirstName":$("#prenom-coord")[0].value,
+            "LastName":$("#nom-coord")[0].value,
+            "Email":$("#mail-coord")[0].value,
+            "Password":$("#mdp-coord")[0].value,
+            "Address":$("#adresse-coord")[0].value,
+            "City":$("#ville-coord")[0].value,
+            "Mobile":$("#mobile-coord")[0].value,
+            "PostalCode":$("#cp-coord")[0].value,
+            "Disponibility":$("#dispo-coord")[0].value,
+            "Competencies":$("#competence-coord")[0].value.split(","),
+            "WantedSalary":$("#salaire-coord")[0].value,
+            "ExperienceYears":$("#expe-coord")[0].value,
             "action": "set_user"
         };
 
@@ -40,7 +40,7 @@ $(document).ready(function(){
             console.log('Error', e);
         }).always(function(){
             messageBlock.html(message);
-            var test = message.toLowerCase().replace(/[éèêë]/g,"e");
+            var test = message.toLowerCase().replace(/[Ã©Ã¨ÃªÃ«]/g,"e");
             messageBlock.addClass(test);
         });
     });
