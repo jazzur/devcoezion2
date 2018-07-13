@@ -6,10 +6,6 @@ Template Name: Connexion
 if(isset($_GET['annonce'])){
     $connexion_annonce = $_GET['annonce'];
 }
-if(isset($_SESSION['id']) != ""){
-    echo "session vide";
-}
-
 $error = false;
 if(isset($_POST['connexion'])){
     $mail = htmlentities($_POST['mail']);	
@@ -51,11 +47,15 @@ if(isset($_POST['connexion'])){
 
         if($_SESSION['id'] != ""){
             /**************************************************************/
-            header("Location: http://localhost/devcoezion2/index.php/mon-compte/");
+//            header("Location: http://localhost/devcoezion2/index.php/mon-compte/");
+            get_template_part( 'template-parts/compte/compte', get_post_format() );
         }
+
+
         if($_SESSION['id'] != "" && $connexion_annonce != ""){
             /*************************************************************/
-            header("Location: http://localhost/devcoezion2/index.php/repondre-aux-offres/details-offre/?id=".$connexion_annonce);
+//            header("Location: http://localhost/devcoezion2/index.php/repondre-aux-offres/details-offre/?id=".$connexion_annonce);
+            get_template_part( 'template-parts/offres/details-offre', get_post_format() );
         }
     }
 } 
@@ -114,7 +114,7 @@ if(isset($_POST['inscription'])){
             ];
 
             $datasave_string = json_encode($datasave);
-        
+
              // Appel et param&eacute;trage de l'API
             $ch = curl_init('http://api.infolor.fr/api/CRM/SaveCandidate');
             curl_setopt($ch, CURLOPT_POST, true);
@@ -151,8 +151,7 @@ $competencesTab = fonctionCRM::getCompetences($params);
 $experiences = fonctionCRM::getExperiences();
 $civility = fonctionCRM::getCivilities();
 /********************* Fin Inscription ***********************/
-
-get_header();
+//get_header();
 
 get_template_part( 'template-parts/post/content', get_post_format() );    // ajouter contenu inséré en admin
 ?>

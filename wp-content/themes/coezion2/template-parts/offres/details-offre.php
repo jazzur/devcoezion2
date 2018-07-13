@@ -14,8 +14,12 @@
                 };
                 
                 $(document).ready(function(){
+                    /*****************************************/
                     var params = window.location.search.split("=");
                     var id = params[1];
+                    // to connect with an offre 
+                    //id = <?php //$_GET["annonce"] ?>
+                    /*****************************************/
                     
                     $.ajax({
                         url: "http://api.infolor.fr/api/CRM/GetWebAnnouncesByCriteria",

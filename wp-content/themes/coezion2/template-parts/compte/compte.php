@@ -8,14 +8,13 @@ if(empty($_SESSION) == true){
     get_header();
     if(isset($_POST['avatar_sub'])){
         if(!empty($_FILES['avatar'])){
-
             $image = $_FILES['avatar'];
             $extension = strtolower(substr($image['name'],-3));
             $nomImage = $_SESSION['id'].$image['name'];
 
             $allow_extension = array("jpg", "png");
-            $adresse_avatar = get_stylesheet_directory().'/assets/images/profile/image/'.$nomImage;
-            $adresse_avatar_min = get_stylesheet_directory().'/assets/images/profile/image/miniature';
+            $adresse_avatar = get_stylesheet_directory().'/assets/images/profile/'.$nomImage;
+            $adresse_avatar_min = get_stylesheet_directory().'/assets/images/profile/miniature';
 
             if(in_array($extension, $allow_extension)){
                 move_uploaded_file($image['tmp_name'],$adresse_avatar);
@@ -48,6 +47,7 @@ if(empty($_SESSION) == true){
                     "AvatarEncodedBase64FileContent" =>$avatar64
                 ];
                 $resAvatar = fonctionCRM::saveAvatar($dataavatar);
+                print_r($resAvatar);
                 //echo '<section class="alert alert-success">Votre photo a bien &eacute;t&eacute; modifi&eacute;e ! </section>';
                 $_SESSION['avatar'] = $nomImage;
             }else{
@@ -69,12 +69,11 @@ if(empty($_SESSION) == true){
                 $dataInFile = file_get_contents($uploadfile);
 
                 $cv64 = base64_encode($dataInFile);
-                $tab = array(2);
-                //echo $cv["name"];
-                //exit(0);
+//                $tab = array(2);
                 $data = ["CompanyId"=>2,"AnnouceId"=>null,"FileName"=>$cv["name"],"EncodedBase64FileContent" =>$cv64];
                 $data_string = json_encode($data);
                 $objetCandidat = fonctionCRM::majCv($data_string);
+                echo 'candidat: ';
                 print_r($objetCandidat);
 
                 $_SESSION['cv'] = $cv['name'];
@@ -159,7 +158,7 @@ if(empty($_SESSION) == true){
             <h4>Vos coordonn&eacute;es</h4>
             <section class="col-lg-3">
                 <label for="civ">Civilit&eacute;</label>
-                <select name="civilite" class="form-control">
+                <select name="civilite" id="civ" class="form-control">
                     <option value="M." selected>Homme</option>
                     <option value="Mme">Femme</option>	
                 </select>
@@ -174,7 +173,7 @@ if(empty($_SESSION) == true){
             </section>
             <section class="col-lg-3">
                 <label for="mail">E-mail </label>			
-                <input type="mail" name="mail" id="e-mail" class="form-control"  value="<?=$_SESSION['mail']; ?>" />
+                <input type="mail" name="mail" id="mail" class="form-control"  value="<?=$_SESSION['mail']; ?>" />
             </section>
             <section class="col-lg-3">
                 <label for="mdp">Mot de passe</label>
@@ -294,7 +293,7 @@ if(empty($_SESSION) == true){
                         </select>
                         </section>
                         <section class="col-lg-6">
-                            <label for="departement">Où</label>
+                            <label for="departement">OÃ¹</label>
                             <input id="departement" name="departement" class="form-control" type="text" />
                         </section>
                         <section class="col-lg-12">				

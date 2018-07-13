@@ -4,7 +4,7 @@ class fonctionCRM{
    
     public static function getAnnoncebycritere($params){
 		
-		//Appel et paramétrage de l'API	
+		//Appel et paramÃ©trage de l'API	
 		$ch = curl_init('http://api.infolor.fr/api/CRM/GetWebAnnouncesByCriteria');	
 		curl_setopt($ch, CURLOPT_POST, true);	
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $params);	
@@ -18,7 +18,7 @@ class fonctionCRM{
     }
     public static function getAnnoncebycritereOffres($params){
 		$param = json_encode($params);
-		//Appel et paramétrage de l'API	
+		//Appel et paramÃ©trage de l'API	
 		$ch = curl_init('http://api.infolor.fr/api/CRM/GetWebAnnouncesByCriteria');	
 		curl_setopt($ch, CURLOPT_POST, true);	
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $param);	
@@ -33,8 +33,8 @@ class fonctionCRM{
 		$html = '<table id="tablesorter">'
 			. '<thead>'
 				. '<tr class="table_header">'
-					. '<th class="text-center">Intitulé du poste</th>'
-					. '<th class="text-center">Expérience souhaitée</th>'
+					. '<th class="text-center">IntitulÃ© du poste</th>'
+					. '<th class="text-center">ExpÃ©rience souhaitÃ©e</th>'
 					. '<th class="text-center">Date</th>'
 					. '<th class="text-center">Ville</th>'
 					. '<th></th>'
@@ -48,7 +48,7 @@ class fonctionCRM{
                         . '<td>'. $annonces[$i]->Experience .'</td>'
                         . '<td>'. $annonces[$i]->Date .'</td>'
                         . '<td>'. $annonces[$i]->Place .'</td>'
-                        . '<td><a href="">Détail</a></td>'
+                        . '<td><a href="">DÃ©tail</a></td>'
                     . '</tr>';
         }
         $html .=  '</tbody>'
@@ -69,7 +69,7 @@ class fonctionCRM{
     }
 	
     public static function getCandidatByCv($params){	
-	//Appel et paramétrage de l'API	
+	//Appel et paramÃ©trage de l'API	
 	$ch = curl_init('http://api.infolor.fr/api/CRM/GetCandidateByCV');	
 	curl_setopt($ch, CURLOPT_POST, true);	
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $params);	
@@ -83,7 +83,7 @@ class fonctionCRM{
     }
 	
 	public static function getCompetences($params){
-		//Appel et paramétrage de l'API
+		//Appel et paramÃ©trage de l'API
 		$ch = curl_init('http://api.infolor.fr/api/CRM/Competecies');	
 		curl_setopt($ch, CURLOPT_POST, true);	
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $params);	
@@ -100,7 +100,7 @@ class fonctionCRM{
 		return $competences;
 	}
 	public static function getExperiences(){
-		//Appel et paramétrage de l'API
+		//Appel et paramÃ©trage de l'API
 		$ch = curl_init('http://api.infolor.fr/api/CRM/ExperienceYears');	
 		// curl_setopt($ch, CURLOPT_POST, true);	
 		// curl_setopt($ch, CURLOPT_POSTFIELDS, $params);	
@@ -114,7 +114,7 @@ class fonctionCRM{
 	}
 	
 	public static function getCivilities(){
-		//Appel et paramétrage de l'API
+		//Appel et paramÃ©trage de l'API
 		$ch = curl_init('http://api.infolor.fr/api/CRM/Civilities');	
 		// curl_setopt($ch, CURLOPT_POST, true);
 		// curl_setopt($ch, CURLOPT_POSTFIELDS, $params);	
@@ -127,8 +127,10 @@ class fonctionCRM{
 	}
 	public static function saveAvatar($params){
 		$data_string = json_encode($params);
-// var_dump($data_string);		
-		 // Appel et paramétrage de l'API
+/*echo '<pre>';
+print_r($data_string);		
+echo '</pre>';*/
+		 // Appel et paramÃ©trage de l'API
 		$ch = curl_init('http://api.infolor.fr/api/CRM/SaveCandidate');
 		curl_setopt($ch, CURLOPT_POST, true);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
@@ -143,8 +145,10 @@ class fonctionCRM{
 	}
 	
     public static function majCv($params){
-		
-		//Appel et paramÃ©trage de l'API	
+echo '<pre>';
+print_r($params);
+echo '</pre>';
+		//Appel et parametrage de l'API	
 		$ch = curl_init('http://api.infolor.fr/api/CRM/UploadCV');	
 		curl_setopt($ch, CURLOPT_POST, true);	
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $params);	
