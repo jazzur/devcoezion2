@@ -62,7 +62,7 @@ if(isset($_POST['inscription'])){
     $tel = htmlentities($_POST['phone']);
     $mail = htmlentities($_POST['email']);
     $competence = htmlentities($_POST['competence']);
-    $competences = substr($competence,0,-1);
+        $competences = substr($competence,0,-1);
     $expe = htmlentities($_POST['expe']);
     $disponibilite = htmlentities($_POST['datedebut']);
     $salaire = htmlentities($_POST['salaire']);
@@ -135,10 +135,6 @@ if(isset($_POST['inscription'])){
         }
     }
 }
-$params= "";
-$competencesTab = fonctionCRM::getCompetences($params);
-$experiences = fonctionCRM::getExperiences();
-$civility = fonctionCRM::getCivilities();
 /********************* Fin Inscription ***********************/
 
 /********************* Compte ***********************/
@@ -248,7 +244,7 @@ if(isset($_POST['avatar_sub'])){
             <?php
                 get_template_part( 'template-parts/compte/compte', get_post_format() );
             }elseif($_SESSION['id'] != "" && $connexion_annonce != ""){
-                get_template_part( 'template-parts/offres/details-offre', get_post_format() );
+                //get_template_part( 'template-parts/offres/details-offre', get_post_format() );
             } ?>
             </div>
             <!--*************** Fin Compte ******************/-->

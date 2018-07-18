@@ -162,33 +162,6 @@
                 show_cv_form.toggle("slow");
             })
         </script>
-
-        <div id="candidatures"></div>
-        <section class="col-lg-12 interf_offres">
-            <h4 class="menu_profil">Votre liste de candidatures</h4>		
-            <table class="table-hover table_profil">
-                <tr>
-                    <th>Intitul&eacute; du poste</th>				
-                    <th>Exp&eacute;rience souahit&eacute;e</th>				
-                    <th>Date</th>				
-                    <th>Ville</th>				
-                    <th></th>			
-                </tr>
-                <?php
-                    for($i=0;$i<count($_SESSION['annonce']);$i++){ 
-                        $dateEn = explode('T', $_SESSION['annonce'][$i]->Date);
-                        $dateFr = explode('-', $dateEn[0]);
-                ?>
-                <tr>
-                    <td><?=$_SESSION['annonce'][$i]->Title;?></td>
-                    <td><?=$_SESSION['annonce'][$i]->Experience;?></td>
-                    <td><?php $date = new DateTime($_SESSION['annonce'][$i]->Date);echo $date->format('d-m-Y'); ?></td> 
-                    <td><?=$_SESSION['annonce'][$i]->Place;?></td>
-                    <td><td><a href="details-offre?id=<?=$_SESSION['annonce'][$i]->AnnouceId;?>">d&eacute;tails</a></td>
-                </tr>
-                <?php } ?>
-            </table>
-        </section>
     </section>
 </section>
 <!---------------------------------------- Fin Compte ---------------------------------------------->

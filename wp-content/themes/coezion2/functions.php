@@ -120,8 +120,6 @@
     add_action( 'wp_ajax_set_user_avatar', 'set_user_avatar_file' );
     add_action( 'wp_ajax_nopriv_set_user_avatar', 'set_user_avatar_file' );
     function set_user_avatar_file(){
-print_r("OKOKOK");
-wp_die();
         if ( isset( $_POST ) ) {
             $array = [];
             // Ajout des données manquantes
@@ -154,7 +152,6 @@ wp_die();
             // Mise à jour des variables sessions
             $_SESSION['avatar'] = $_POST['AvatarFileName'];
             $_SESSION['avatarcode'] = $_POST['AvatarEncodedBase64FileContent'];
-            
             
             // reponse
             wp_send_json($resultOfSave);
