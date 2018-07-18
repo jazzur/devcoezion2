@@ -66,56 +66,57 @@
         modif_coord_button.click(function(){
             var show_coord_form = $('section.modif-coordonnees');
             show_coord_form.toggle("slow");
+            validate();
         })
     </script>
 
     <section class="col-lg-12 modif-coordonnees">
         <h4>Vos coordonn&eacute;es</h4>
         <section class="col-lg-3">
-            <label for="civ">Civilit&eacute;</label>
+            <label for="civ">Civilit&eacute;*</label>
             <select name="civilite" id="civ-coord" class="form-control">
                 <option value="M." selected>Homme</option>
                 <option value="Mme">Femme</option>	
             </select>
         </section>
         <section class="col-lg-3">
-            <label for="prenom">Pr&eacute;nom </label>
+            <label for="prenom">Pr&eacute;nom* </label>
             <input type="text" name="prenom" id="prenom-coord" value="<?=$_SESSION['prenom']; ?>" class="form-control" />
         </section>
         <section class="col-lg-3">	
-            <label for="nom">Nom </label>			
+            <label for="nom">Nom*</label>
             <input type="text" name="nom" id="nom-coord" value="<?=$_SESSION['nom']; ?>" class="form-control" />
         </section>
         <section class="col-lg-3">
-            <label for="mail">E-mail </label>			
+            <label for="mail">E-mail*</label>			
             <input type="mail" name="mail" id="mail-coord" class="form-control"  value="<?=$_SESSION['mail']; ?>" />
         </section>
         <section class="col-lg-3">
-            <label for="mdp">Mot de passe</label>
+            <label for="mdp">Mot de passe*</label>
             <input type="text" name="mdp" id="mdp-coord" value="<?=$_SESSION['mdp']; ?>" class="form-control" />
         </section>
         <section class="col-lg-3">	
-            <label for="mobile">T&eacute;l&eacute;phone </label>			
+            <label for="mobile">T&eacute;l&eacute;phone*</label>			
             <input type="text" name="mobile" id="mobile-coord" class="form-control"  value="<?=$_SESSION['mobile']; ?>" />
         </section>
         <section class="col-lg-9">
-            <label for="adresse">Adresse</label>			
+            <label for="adresse">Adresse*</label>
             <input name="adresse" id="adresse-coord" class="form-control" value="<?=$_SESSION['addresse'];?>" />
         </section>
         <section class="col-lg-3">
-            <label for="cp">Code Postal </label>
+            <label for="cp">Code Postal*</label>
             <input type="text" name="cp" id="cp-coord" class="form-control" value="<?=$_SESSION['cp']; ?>" />	
         </section>
         <section class="col-lg-3">	
-            <label for="ville">Ville </label>			
+            <label for="ville">Ville*</label>			
             <input type="text" name="ville" id="ville-coord" class="form-control" value="<?=$_SESSION['ville']; ?>"  />
         </section>
         <section class="col-lg-9">
-            <label for="competence">Comp&eacute;tences </label>
+            <label for="competence">Comp&eacute;tences*</label>
             <input type="text" name="competence" id="competence-coord" class="form-control" value="<?= implode(",", $_SESSION['competence']) ?>" />
         </section>
         <section class="col-lg-3">								
-            <label for="expe">Exp&eacute;rience</label>							
+            <label for="expe">Exp&eacute;rience*</label>							
             <select id="expe-coord" name="expe"  class="form-control" >
                 <option value="<?=$_SESSION['expe'];?>"><?=$_SESSION['expe'];?></option>
                 <?php for($i=0;$i<count($experiences);$i++){ ?>
@@ -124,15 +125,15 @@
             </select>
         </section>
         <section class="col-lg-3">				
-            <label for="dispo">Disponibilit&eacute; </label>			
+            <label for="dispo">Disponibilit&eacute;*</label>			
             <input type="date" name="dispo" id="dispo-coord" class="form-control"  value="<?php $date = new DateTime($_SESSION['dispo']); echo $date->format('Y-m-d'); ?>" />
         </section>
         <section class="col-lg-3">								
-            <label for="salaire">Salaire souhait&eacute; (K)</label>							
+            <label for="salaire">Salaire souhait&eacute; (K)*</label>							
             <input type="text" name="salaire" id="salaire-coord" class="form-control" value="<?=$_SESSION['salaire']; ?>"/>			
         </section>
         <section class="col-lg-9 submit_form">
-            <input type="submit" name="modifier_coord" id="modifier_coord" class="btn btn-primary" value="Modifier" />
+            <input type="submit" name="modifier_coord" id="modifier_coord" class="btn btn-primary" value="Modifier" disabled="true" />
             <span class='save-message coordonnees'></span>
             <img src="<?= get_stylesheet_directory_uri().'/assets/images/waiting.gif' ?>" alt="waiting..." class="waiting-gif coordonnees"/>
         </section>

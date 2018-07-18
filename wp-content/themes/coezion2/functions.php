@@ -59,7 +59,6 @@
     add_filter('wp_mail_from_name', 'new_mail_from_name');
     function new_mail_from_name() { return 'COEZION !!!'; }
     
-    
     add_action( 'wp_enqueue_scripts', 'my_enqueue' );
     function my_enqueue($hook) {
         //if( 'index.php' != $hook ) { return; }

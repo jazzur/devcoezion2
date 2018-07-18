@@ -75,7 +75,7 @@ if(isset($_POST['inscription'])){
     }else{
         $uploadfile = $uploaddir . basename($cv['name']);
         if($cv["name"] != ""){
-                move_uploaded_file($cv['tmp_name'], $uploadfile);
+            move_uploaded_file($cv['tmp_name'], $uploadfile);
             $dataInFile = file_get_contents($uploadfile);
             $cv64 = base64_encode($dataInFile);
             $data = ["CompanyId"=>2,"AnnouceId"=>null,"FileName"=>$cv["name"],"EncodedBase64FileContent" =>$cv64];
@@ -251,6 +251,83 @@ if(isset($_POST['avatar_sub'])){
         </main>
     </div>
 </div>
+
+<script>
+// Validation formulaire
+$(document).ready(function(){
+    var input_inscription = $("form.form_inscr input.form-control");
+    var input_connexion = $("form.form_connexion input.form-control");
+    var input_compte = $("section.modif-coordonnees input.form-control");
+    
+    // Reste a invalider en fonction du type de champs
+    function validate_type(item){
+        console.log(item.val(), item[0].validity.valid)
+        if(item[0].validity.valid == true){
+            item.addClass("success").removeClass("error");
+        }else{
+            item.addClass("error").removeClass("success");
+        }
+    }
+    
+    var validate_button = function(){
+        // Bouton Inscription non grisé => tous les champs doivent être rempli
+        var valid_fields = $("form.form_inscr input.form-control.success");
+        if(valid_fields.length >= input_inscription.length){
+            $("input.submit_profil[name='inscription']").prop( "disabled", false );
+        }else{
+            $("input.submit_profil[name='inscription']").prop( "disabled", true );
+        }
+
+        // Bouton Connexion non grisé => tous les champs doivent être rempli
+        var valid_fields_connexion = $("form.form_connexion input.form-control.success");
+        if(valid_fields_connexion.length >= input_connexion.length){
+            $("input.submit_profil[name='connexion']").prop( "disabled", false );
+        }else{
+            $("input.submit_profil[name='connexion']").prop( "disabled", true );
+        }
+        
+        // Bouton Modifier coordonnées non grisé => tous les champs doivent être rempli
+        var valid_fields_compte = $("section.modif-coordonnees input.form-control.success");
+        if(valid_fields_compte.length >= input_compte.length){
+            $("input#modifier_coord[name='modifier_coord']").prop( "disabled", false );
+        }else{
+            $("input#modifier_coord[name='modifier_coord']").prop( "disabled", true );
+        }
+    }
+
+    if(input_connexion.length > 0){
+        input_connexion.each(function(i, a){
+            if($(this).val() != ""){
+                validate_type($(this));
+            }
+        });
+        input_inscription.each(function(i, a){
+            console.log("inscription", $(this).val())
+            if($(this).val() != ""){
+                validate_type($(this));
+            }
+        });
+        validate_button();
+    }else if(input_compte.length > 0){
+        input_compte.each(function(i, a){
+            if($(this).val() != ""){
+                validate_type($(this));
+            }
+        });
+        validate_button();
+    }
+    
+    // Validation des champs non vide
+    $("input.form-control").focusout(function(){
+        if($(this).val() == ""){
+            $(this).addClass("error").removeClass("success");
+        }else{
+            validate_type($(this));
+        }
+        validate_button();
+    });
+});
+</script>
 <?php
     get_footer();
 ?>

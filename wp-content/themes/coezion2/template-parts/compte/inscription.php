@@ -20,7 +20,7 @@
         </section>
         <section class="col-lg-3">
             <label for="mail">E-mail*</label>
-            <input type="email" name="email" id="email" class="form-control"  placeholder="" oninvalid="invalid()" />
+            <input type="email" name="email" id="email" class="form-control"  placeholder="" />
         </section>
         <section class="col-lg-3">
             <label for="mdp">Mot de passe*</label>
@@ -65,7 +65,7 @@
             <label for="salaire">Salaire souhait&eacute; (K)*</label>
             <input type="text" name="salaire" id="salaire" class="form-control"  placeholder="" />
         </section>
-        <section class="col-lg-9">
+        <section class="col-lg-6">
             <label for="cv">CV*</label>
             <input type="file" name="cv" id="cv" class="form-control"/>
         </section>
@@ -76,44 +76,3 @@
     </form>
 </section>
 <!------------------------- Inscrioption ------------------------->
-<script>
-    var validate = function(){
-        // Bouton inscription non grisé => tous les champs doivent être rempli
-        var input_inscription = $("form.form_inscr input.form-control");
-        var valid_fields = $("form.form_inscr .form-control.success");
-        if(valid_fields.length > input_inscription.length){
-            $("input.submit_profil[name='inscription']").prop( "disabled", false );
-        }else{            
-            $("input.submit_profil[name='inscription']").prop( "disabled", true );
-        }
-    }
-    
-    //invalid = function(){
-    function invalid(){
-        console.log('test', $("input#email"))                
-    }
-    
-    // Validation des champs non vide
-    $("input.form-control").focusout(function(){
-        if($(this).val() == ""){
-            $(this).addClass("error");
-            $(this).removeClass("success");
-        }else{
-            $(this).addClass("success");
-            $(this).removeClass("error");
-        }
-        validate();
-    });
-    
-    // Validation des selects non vide
-    $("select.form-control").focusout(function(){
-        if($(this)[0].value == ""){
-            $(this).addClass("error");
-            $(this).removeClass("success");
-        }else{
-            $(this).addClass("success");
-            $(this).removeClass("error");
-        }
-        // validate(); // les selects sont remplis par defaut
-    });
-</script>

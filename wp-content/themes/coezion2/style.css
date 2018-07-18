@@ -3107,10 +3107,10 @@ input#avatar_sub{
 
 /* VALIDATE */
 /* Champs vides & Données non conforme au format du champ */
-form input.error, form select.error, input:invalid{
+form input.error, section input.error{
     border: 1px solid red;
 }
-form input.success, form select.success, input:valid{
+form input.success, section input.success{
     border: 1px solid green;
 }
 /* Fin VALIDATE */
