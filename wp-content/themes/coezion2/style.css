@@ -3105,17 +3105,26 @@ input#avatar_sub{
     cursor: pointer;
 }
 
+/* VALIDATE */
+/* Champs vides & Données non conforme au format du champ */
+form input.error, form select.error, input:invalid{
+    border: 1px solid red;
+}
+form input.success, form select.success, input:valid{
+    border: 1px solid green;
+}
+/* Fin VALIDATE */
 
 /* FOOTER */
 #footer-wrapper {
-	overflow: visible;
-	margin-top: 0px;
+    overflow: visible;
+    margin-top: 0px;
 }
 #copyright{
-	margin-top: 0px;
+    margin-top: 0px;
 }
 ul.links{
-	margin-bottom: 0px;
+    margin-bottom: 0px;
 }
 /* FIN FOOTER */
 /***** FIN CONTENT ****/
