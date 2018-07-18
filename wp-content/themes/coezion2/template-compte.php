@@ -261,7 +261,6 @@ $(document).ready(function(){
     
     // Reste a invalider en fonction du type de champs
     function validate_type(item){
-        console.log(item.val(), item[0].validity.valid)
         if(item[0].validity.valid == true){
             item.addClass("success").removeClass("error");
         }else{
@@ -302,7 +301,6 @@ $(document).ready(function(){
             }
         });
         input_inscription.each(function(i, a){
-            console.log("inscription", $(this).val())
             if($(this).val() != ""){
                 validate_type($(this));
             }
