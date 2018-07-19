@@ -145,9 +145,6 @@ echo '</pre>';*/
 	}
 	
     public static function majCv($params){
-echo '<pre>';
-print_r($params);
-echo '</pre>';
 		//Appel et parametrage de l'API	
 		$ch = curl_init('http://api.infolor.fr/api/CRM/UploadCV');	
 		curl_setopt($ch, CURLOPT_POST, true);	

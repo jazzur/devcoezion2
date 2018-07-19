@@ -214,11 +214,6 @@ if(isset($_POST['avatar_sub'])){
     }
 /********************* Fin Compte ***********************/
 ?>
-<script>
-    // Connexion menu
-    var session = '<?= isset($_SESSION['id'])? $_SESSION['id']:""; ?>';
-    if(session == ""){ $("li.deconnexion-menu").css("display", "none"); }
-</script>
 <div class="wrap fond-bois">
     <div id="primary" class="content-area">
         <main id="main" class="site-main liste-offres-tmp" role="main">
@@ -229,7 +224,7 @@ if(isset($_POST['avatar_sub'])){
             <!--*************** Fin Content Wordpress from admin ******************/-->
             
             <!--*************** connexion / inscription ******************/-->
-            <?php if(empty($_SESSION) == true){ ?>
+            <?php if(!isset($_SESSION['mail'])){ ?>
                 <section class="page col-lg-12" id="main-wrapper">
                 <br/>
                 <?php
@@ -238,16 +233,20 @@ if(isset($_POST['avatar_sub'])){
                 ?>
                 </section>
                 <!--*************** Fin connexion / inscription ******************/-->
-            <?php }elseif($_SESSION['id'] != ""){ ?>
+            <?php }elseif(isset($_SESSION['mail']) && $connexion_annonce != ""){    // Reste à faire
+                //get_template_part( 'template-parts/offres/details-offre', get_post_format() );
+            }elseif(isset($_SESSION['mail'])){ ?>
                 <!--*************** Compte ******************/-->
                 <div id="main-wrapper">
+                    <script>
+                        // Deconnexion menu
+                        $("li.deconnexion-menu").css("display", "block");
+                    </script>
             <?php
                 get_template_part( 'template-parts/compte/compte', get_post_format() );
-            }elseif($_SESSION['id'] != "" && $connexion_annonce != ""){
-                //get_template_part( 'template-parts/offres/details-offre', get_post_format() );
             } ?>
-            </div>
-            <!--*************** Fin Compte ******************/-->
+                </div>
+                <!--*************** Fin Compte ******************/-->
         </main>
     </div>
 </div>

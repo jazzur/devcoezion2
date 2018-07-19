@@ -2735,6 +2735,9 @@ button.menu-toggle, a.menu-scroll-down{
     text-decoration: none;
     border-color: #fff;
 }
+#mega-menu-wrap-Top #mega-menu-Top li.mega-menu-item.deconnexion-menu{
+    display: none;
+}
 /* Fin Menu */
 #mega-menu-wrap-Top #mega-menu-Top li.mega-menu-item-has-children span.arrow{
     display: none;
