@@ -235,6 +235,7 @@ if(isset($_POST['avatar_sub'])){
                 <!--*************** Fin connexion / inscription ******************/-->
             <?php }elseif(isset($_SESSION['mail']) && $connexion_annonce != ""){    // Reste à faire
                 //get_template_part( 'template-parts/offres/details-offre', get_post_format() );
+                get_template_part( 'template-parts/compte/compte', get_post_format() ); // En attendant
             }elseif(isset($_SESSION['mail'])){ ?>
                 <!--*************** Compte ******************/-->
                 <div id="main-wrapper">
