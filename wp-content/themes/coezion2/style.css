@@ -2980,6 +2980,18 @@ margin-bottom: 6%;
     border: 1px solid transparent;
     border-radius: 4px;
 }
+
+@media(max-width: 867px){
+    section.connexion section, section.inscription section, section.modif-coordonnees section{
+        margin: 5px 0px !important;
+    }
+    section.connexion, section.inscription, section.modif-coordonnees{
+        padding: 0px 10px;
+    }
+}
+input.submit_profil{
+    width: 100%;
+}
 /*******************fin profil***********************/
 
 /* Fin main */
@@ -3031,6 +3043,9 @@ center#details-offre{
     .row.home-buttons .mobile{
         min-width: 150px;
     }
+    section.col-xs-9, section.col-sm-9{
+        width: 100%;
+    }
 }
 
 img.waiting-gif{
@@ -3080,6 +3095,7 @@ section.col-lg-3{
 section.col-lg-9{
     width: 77.5%;
 }
+
 section.col-lg-6{
     width: 52%;
 }

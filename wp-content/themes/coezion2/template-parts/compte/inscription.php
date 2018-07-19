@@ -30,7 +30,7 @@
             <label for="phone">Mobile*</label>
             <input type="tel" name="phone" id="phone" class="form-control" placeholder="" />
         </section>
-        <section class="col-lg-9">
+        <section class="col-lg-9  col-sm-9 col-xs-9">
             <label for="adresse">Adresse*</label>
             <input type="text" name="adresse" id="adresse" class="form-control"  />
         </section>
@@ -42,7 +42,7 @@
             <label for="ville">Ville*</label>
             <input type="text" name="ville" id="ville" class="form-control" />
         </section>
-        <section class="col-lg-9">
+        <section class="col-lg-9 col-sm-9 col-xs-9">
             <label for="competence">Comp&eacute;tences*</label>
             <input type="text" name="competence" id="competence" class="form-control"  />
         </section>
@@ -61,16 +61,16 @@
             <label for="datedebut">Disponibilit&eacute;*</label>
             <input type="date" name="datedebut" id="datedebut" class="form-control" />
         </section>
-        <section class="col-lg-6">
+        <section class="col-sm-9 col-xs-9">
             <label for="salaire">Salaire souhait&eacute; (K)*</label>
             <input type="text" name="salaire" id="salaire" class="form-control"  placeholder="" />
         </section>
-        <section class="col-lg-6">
+        <section class="col-sm-9 col-xs-9">
             <label for="cv">CV*</label>
             <input type="file" name="cv" id="cv" class="form-control"/>
         </section>
 
-        <section class="col-lg-9 submit_form"><br/>
+        <section class="col-lg-9 col-sm-9 col-xs-9 submit_form"><br/>
             <input type="submit" name="inscription" class="submit_profil btn btn-primary" value="Inscription" disabled="true" />
         </section>
     </form>

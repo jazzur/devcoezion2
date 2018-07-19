@@ -24,6 +24,7 @@ if(isset($_POST['connexion'])){
     curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-type: application/json"));
     $resultlogin = curl_exec($ch);
     $codeErrorSave = json_decode($resultlogin);
+    //print_r($resultlogin);
 
     if($codeErrorSave == Null){
         $error="Vos identifiants ne sont pas corrects";
@@ -80,9 +81,9 @@ if(isset($_POST['inscription'])){
             $cv64 = base64_encode($dataInFile);
             $data = ["CompanyId"=>2,"AnnouceId"=>null,"FileName"=>$cv["name"],"EncodedBase64FileContent" =>$cv64];
             $data_string = json_encode($data);
-            $objetCandidat = fonctionCRM::getCandidatByCv($data_string);			
+            //$objetCandidat = fonctionCRM::getCandidatByCv($data_string);			
             $datasave = [
-                "Id" => $objetCandidat->Id,
+                "Id" => 0,
                 "Civility" => $civilite,
                 "FirstName"=> $nom, 
                 "LastName" => $prenom,
@@ -103,7 +104,7 @@ if(isset($_POST['inscription'])){
             ];
 
             $datasave_string = json_encode($datasave);
-
+print_r($datasave_string);
              // Appel et param&eacute;trage de l'API
             $ch = curl_init('http://api.infolor.fr/api/CRM/SaveCandidate');
             curl_setopt($ch, CURLOPT_POST, true);
@@ -179,7 +180,7 @@ if(isset($_POST['avatar_sub'])){
                     "AvatarEncodedBase64FileContent" =>$avatar64
                 ];
                 $resAvatar = fonctionCRM::saveAvatar($dataavatar);
-                print_r($resAvatar);
+                //print_r($resAvatar);
                 //echo '<section class="alert alert-success">Votre photo a bien &eacute;t&eacute; modifi&eacute;e ! </section>';
                 $_SESSION['avatar'] = $nomImage;
             }else{

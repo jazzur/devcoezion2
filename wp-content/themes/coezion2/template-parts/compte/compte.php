@@ -15,7 +15,7 @@
             <section class="avatar_profil">
                 <?php
                 if($_SESSION['avatar']){ ?>
-                    <img src="<?= get_stylesheet_directory_uri().'/assets/images/profile/image/miniature/'.$_SESSION['avatar'];?>" alt="avatar profil" class="img-responsive mon_avatar" />
+                    <img src="<?= get_stylesheet_directory_uri().'/assets/images/profile/miniature/'.$_SESSION['avatar'];?>" alt="avatar profil" class="img-responsive mon_avatar" />
                 <?php 
                 }else{?>
                     <img src="<?= get_stylesheet_directory_uri().'/assets/images/profile/avatar.png';?>" alt="avatar profil" class="img-responsive mon_avatar" />
