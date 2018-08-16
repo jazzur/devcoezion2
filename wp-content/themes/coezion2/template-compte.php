@@ -5,6 +5,7 @@ Template Name: Compte
 get_header();
 
 /********************* Connexion ***********************/
+$connexion_annonce = '';
 if(isset($_GET['annonce'])){
     $connexion_annonce = $_GET['annonce'];
 }
@@ -15,7 +16,7 @@ if(isset($_POST['connexion'])){
 
     $data = ["Email"=>$mail,"Password"=>$mdp];
     $data_string = json_encode($data);
-     // Appel et param&eacute;trage de l'API
+    // Appel et param&eacute;trage de l'API
     $ch = curl_init('http://api.infolor.fr/api/CRM/GetCandidateByLogin');
     curl_setopt($ch, CURLOPT_POST, true);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
@@ -52,7 +53,6 @@ if(isset($_POST['connexion'])){
 /********************* Fin connexion ***********************/
 
 /********************* Inscription ***********************/
-//$error = false;
 if(isset($_POST['inscription'])){
     $civilite = htmlentities($_POST['civilite']);
     $nom = htmlentities($_POST['nom']);
@@ -81,7 +81,6 @@ if(isset($_POST['inscription'])){
             $cv64 = base64_encode($dataInFile);
             $data = ["CompanyId"=>2,"AnnouceId"=>null,"FileName"=>$cv["name"],"EncodedBase64FileContent" =>$cv64];
             $data_string = json_encode($data);
-            //$objetCandidat = fonctionCRM::getCandidatByCv($data_string);			
             $datasave = [
                 "Id" => 0,
                 "Civility" => $civilite,
@@ -104,8 +103,7 @@ if(isset($_POST['inscription'])){
             ];
 
             $datasave_string = json_encode($datasave);
-print_r($datasave_string);
-             // Appel et param&eacute;trage de l'API
+            // Appel et param&eacute;trage de l'API
             $ch = curl_init('http://api.infolor.fr/api/CRM/SaveCandidate');
             curl_setopt($ch, CURLOPT_POST, true);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $datasave_string);
@@ -114,25 +112,32 @@ print_r($datasave_string);
             curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-type: application/json"));
             $resultsave = curl_exec($ch);
             $codeErrorSave = json_decode($resultsave);
-            print_r($codeErrorSave);
-            //echo "<section class='alert alert-success'>F&eacute;licitations ! Vous &ecirc;tes incrit</section>";
 
-            $sujet = "Bienvenue chez Coezzio";
-            $headers= "MIME-Version: 1.0\n";
-            $headers.= "From: \"Coezion\" <contact@coezion.fr>\n";
-            $headers.= "Content-type: multipart/mixed;\n";
-            $limite = '_parties_'.md5(uniqid (rand()));
+            if($codeErrorSave["ErrorMessage"] == "Allready exists"){
+                print_r($codeErrorSave);
+                print_r('Votre adresse mail "'+ $mail +'" existe déjà');
+                $error = 'Votre adresse mail "'+ $mail +'" existe déjà 2';
+            }else{
+                print_r($codeErrorSave);
+                //echo "<section class='alert alert-success'>F&eacute;licitations ! Vous &ecirc;tes incrit</section>";
 
-            $headers.= " boundary=\"----=$limite\"\n\n";
+                $sujet = "Bienvenue chez Coezion";
+                $headers= "MIME-Version: 1.0\n";
+                $headers.= "From: \"Coezion\" <contact@coezion.fr>\n";
+                $headers.= "Content-type: multipart/mixed;\n";
+                $limite = '_parties_'.md5(uniqid (rand()));
 
-            $texte = "------=$limite\n";   
-            $texte.= "Content-type: text/html; charset=\"iso-8859-1\"\n\n";
+                $headers.= " boundary=\"----=$limite\"\n\n";
 
-            $texte .= "Bonjour ".$prenom.",<br/>";
-            $texte .= "Voici votre mot de passe : " . $mdp . ", connectez vous Ã  votre compte <a href='http://dev-wordp.qualis-tt.fr/connexion'>ici</a> et optimis&eacute; votre profil.<br/>";
-            $texte .= "&Agrave; tout de suite sur Qualis !";
-            // exit(0);
-            mail($mail, $sujet, utf8_decode($texte), $headers);
+                $texte = "------=$limite\n";   
+                $texte.= "Content-type: text/html; charset=\"iso-8859-1\"\n\n";
+
+                $texte .= "Bonjour ".$prenom.",<br/>";
+                $texte .= "Voici votre mot de passe : " . $mdp . ", connectez vous Ã  votre compte <a href='http://dev-wordp.qualis-tt.fr/connexion'>ici</a> et optimis&eacute; votre profil.<br/>";
+                $texte .= "&Agrave; tout de suite sur Coezion !";
+                // exit(0);
+                mail($mail, $sujet, utf8_decode($texte), $headers);
+            }
         }
     }
 }
@@ -272,6 +277,8 @@ $(document).ready(function(){
     var validate_button = function(){
         // Bouton Inscription non grisé => tous les champs doivent être rempli
         var valid_fields = $("form.form_inscr input.form-control.success");
+console.log("input_inscription.length", input_inscription.length)        
+console.log("valid_fields.length", valid_fields.length)        
         if(valid_fields.length >= input_inscription.length){
             $("input.submit_profil[name='inscription']").prop( "disabled", false );
         }else{
@@ -295,6 +302,7 @@ $(document).ready(function(){
         }
     }
 
+    // Validation du type de champ
     if(input_connexion.length > 0){
         input_connexion.each(function(i, a){
             if($(this).val() != ""){
@@ -317,7 +325,7 @@ $(document).ready(function(){
     }
     
     // Validation des champs non vide
-    $("input.form-control").focusout(function(){
+    $("input.form-control").keyup(function(){
         if($(this).val() == ""){
             $(this).addClass("error").removeClass("success");
         }else{
