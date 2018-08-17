@@ -49,11 +49,11 @@
         <section class="col-lg-3">
             <label for="expe">Exp&eacute;rience*</label>
             <select id="expe" name="expe"  class="form-control" >
-                <?php 
+                <?php
                     $experiences = fonctionCRM::getExperiences();
                     for($i=0;$i<count($experiences);$i++){ 
                 ?>
-                    <option value="<?=$experiences[$i]->Name;?>"><?=$experiences[$i]->Name;?></option>
+                    <option value="<?= $experiences[$i]->Name;?>"><?=$experiences[$i]->Name; ?></option>
                 <?php } ?>
             </select>
         </section>

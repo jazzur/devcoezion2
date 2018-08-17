@@ -4,6 +4,7 @@
 */
 
 if(isset($_POST["reset_pass"])){
+    $error = "";
     $mail = htmlentities($_POST['mail']);
     $mdp = rand()."coe".rand()."zion";
     $url = get_site_url() . '/mon-compte';
@@ -19,9 +20,10 @@ if(isset($_POST["reset_pass"])){
 
     $mail_send = wp_mail($mail, $sujet, utf8_decode($texte), $headers);
     if (mail_send) {
-        echo "Un mail vous &agrave; &eacute;t&eacute; envoy&eacute;";
+        
+        $error = "Un mail vous &agrave; &eacute;t&eacute; envoy&eacute;";
     }else{
-        echo "Erreur, votre mail n'est pas parti";
+        $error = "Erreur, votre mail n'est pas parti";
     }
 }
 
@@ -75,7 +77,7 @@ $(document).ready(function(){
     }
     
     // Validation des champs non vide
-    $("input.form-control").keyup(function(){
+    $("input.form-control").change(function(){
         if($(this).val() == ""){
             $(this).addClass("error").removeClass("success");
         }else{

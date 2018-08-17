@@ -276,10 +276,8 @@ $(document).ready(function(){
     
     var validate_button = function(){
         // Bouton Inscription non grisé => tous les champs doivent être rempli
-        var valid_fields = $("form.form_inscr input.form-control.success");
-console.log("input_inscription.length", input_inscription.length)        
-console.log("valid_fields.length", valid_fields.length)        
-        if(valid_fields.length >= input_inscription.length){
+        var valid_fields_inscription = $("form.form_inscr input.form-control.success");
+        if(valid_fields_inscription.length >= input_inscription.length){
             $("input.submit_profil[name='inscription']").prop( "disabled", false );
         }else{
             $("input.submit_profil[name='inscription']").prop( "disabled", true );
@@ -325,7 +323,7 @@ console.log("valid_fields.length", valid_fields.length)
     }
     
     // Validation des champs non vide
-    $("input.form-control").keyup(function(){
+    $("input.form-control").change(function(){
         if($(this).val() == ""){
             $(this).addClass("error").removeClass("success");
         }else{
@@ -333,6 +331,15 @@ console.log("valid_fields.length", valid_fields.length)
         }
         validate_button();
     });
+    // Validation des champs non vide
+    /*$("input.form-control-change").change(function(){
+        if($(this).val() == ""){
+            $(this).addClass("error").removeClass("success");
+        }else{
+            validate_type($(this));
+        }
+        validate_button();
+    });*/
 });
 </script>
 <?php
