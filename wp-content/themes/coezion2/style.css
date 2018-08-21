@@ -2172,7 +2172,7 @@
 		/* Basic */
 
 			body {
-				min-width: 960px;
+				/*min-width: 960px;*/
 				line-height: 1.75em;
 				font-size: 12pt;
 			}
@@ -2985,9 +2985,9 @@ margin-bottom: 6%;
     section.connexion section, section.inscription section, section.modif-coordonnees section{
         margin: 5px 0px !important;
     }
-    section.connexion, section.inscription, section.modif-coordonnees{
-        padding: 0px 10px;
-    }
+}
+section.connexion, section.inscription, section.modif-coordonnees{
+    padding: 0px 10px;
 }
 input.submit_profil{
     width: 100%;
@@ -3089,16 +3089,6 @@ form.form_avatar{
 section.modif-coordonnees, section.upload_cv, section.modifavatar2, input#avatar_file{
     display: none;
 }
-section.col-lg-3{
-    margin-right: 10px;
-}
-section.col-lg-9{
-    width: 77.5%;
-}
-
-section.col-lg-6{
-    width: 52%;
-}
 ul.coordonnees{
     margin-bottom: 1em;
 }
@@ -3139,8 +3129,9 @@ form input.success, section input.success{
     overflow: visible;
     margin-top: 0px;
 }
-#copyright{
+#copyright, #footer{
     margin-top: 0px;
+    width: auto;
 }
 ul.links{
     margin-bottom: 0px;
