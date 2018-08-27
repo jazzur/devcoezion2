@@ -12,7 +12,7 @@
             <input type="password" name="mdp" id="mdp" class="form-control"  value="" />
         </section>
         <section class="col-lg-10 col-md-12 col-sm-12 col-xs-12 submit_form"><br/>
-            <input type="submit" name="connexion" class="submit_profil btn btn-primary" value="Connexion" disabled="true" />
+            <input type="submit" name="connexion" class="btn btn-primary" value="Connexion" disabled="true" />
         </section>
         <section class="col-lg-10 col-md-12 col-sm-12 col-xs-12">
             <a href="reinitialiser-mot-de-passe/">Mot de passe oubli&eacute;</a>

@@ -71,7 +71,7 @@
         </section>
 
         <section class="col-lg-10 col-md-12 col-sm-12 col-xs-12 submit_form"><br/>
-            <input type="submit" name="inscription" class="submit_profil btn btn-primary" value="Inscription" disabled="true" />
+            <input type="submit" name="inscription" class="btn btn-primary" value="Inscription" disabled="true" />
         </section>
     </form>
 </section>

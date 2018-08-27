@@ -278,17 +278,17 @@ $(document).ready(function(){
         // Bouton Inscription non grisé => tous les champs doivent être rempli
         var valid_fields_inscription = $("form.form_inscr input.form-control.success");
         if(valid_fields_inscription.length >= input_inscription.length){
-            $("input.submit_profil[name='inscription']").prop( "disabled", false );
+            $("input[name='inscription']").prop( "disabled", false );
         }else{
-            $("input.submit_profil[name='inscription']").prop( "disabled", true );
+            $("input[name='inscription']").prop( "disabled", true );
         }
 
         // Bouton Connexion non grisé => tous les champs doivent être rempli
         var valid_fields_connexion = $("form.form_connexion input.form-control.success");
         if(valid_fields_connexion.length >= input_connexion.length){
-            $("input.submit_profil[name='connexion']").prop( "disabled", false );
+            $("input[name='connexion']").prop( "disabled", false );
         }else{
-            $("input.submit_profil[name='connexion']").prop( "disabled", true );
+            $("input[name='connexion']").prop( "disabled", true );
         }
         
         // Bouton Modifier coordonnées non grisé => tous les champs doivent être rempli

@@ -2979,6 +2979,7 @@ margin-bottom: 6%;
     background-image: none;
     border: 1px solid transparent;
     border-radius: 4px;
+    width: 100%;
 }
 
 @media(max-width: 867px){
@@ -2986,11 +2987,14 @@ margin-bottom: 6%;
         margin: 5px 0px !important;
     }
 }
-section.connexion, section.inscription, section.modif-coordonnees{
+section.connexion, section.inscription, section.modif-coordonnees, #documents section.cv{
     padding: 0px 10px;
 }
 input.submit_profil{
-    width: 100%;
+    margin-bottom: 20px;
+}
+div.block-coordonnees{
+    display: inline-block;
 }
 /*******************fin profil***********************/
 
@@ -3035,6 +3039,11 @@ center#details-offre{
 }
 /* Fin Offres */
 
+@media (min-width: 1200px){
+    .col-lg-3 {
+        margin-right: 1px;
+    }
+}
 .row.home-buttons{
     display: inline-flex;
     flex-wrap: wrap;

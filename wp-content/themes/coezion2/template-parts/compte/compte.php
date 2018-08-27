@@ -63,6 +63,7 @@
     </section>
 </section>
 
+<div class="block-coordonnees col-lg-12 col-md-12 col-sm-12 col-xs-12">
 <section class="col-lg-12 modif-coordonnees">
     <h4>Vos coordonn&eacute;es</h4>
     <section class="col-lg-3">
@@ -126,11 +127,12 @@
         <input type="text" name="salaire" id="salaire-coord" class="form-control" value="<?=$_SESSION['salaire']; ?>"/>			
     </section>
     <section class="col-lg-9 submit_form">
-        <input type="submit" name="modifier_coord" id="modifier_coord" class="btn btn-primary" value="Modifier" disabled="true" />
+        <input type="submit" name="modifier_coord" id="modifier_coord" class="btn btn-primary col-lg-12 col-md-12 col-sm-12 col-xs-12" value="Modifier" disabled="true" />
         <span class='save-message coordonnees'></span>
         <img src="<?= get_stylesheet_directory_uri().'/assets/images/waiting.gif' ?>" alt="waiting..." class="waiting-gif coordonnees"/>
     </section>
 </section>
+</div>
 <script>
     var modif_coord_button = $('img#modif_coord');
     modif_coord_button.click(function(){
@@ -140,29 +142,30 @@
     })
 </script>
 
-<div id="documents"></div>
-<section class="col-lg-12">
-    <h4>votre cv</h4>
-    <section class="col-lg-12">
-        <table class="table-hover table_profil">
-            <tr>
-                <td><?=$_SESSION['cv'];?></td>				
-                <td><!--<a href="">Supprimer</a> | --><a href="<?=get_stylesheet_directory_uri().'/assets/cvCRM/'. $_SESSION['cv']; ?>" target="_blank" >Voir</a> | <span class="modif_cv">Modifier</span></td>
-            </tr>
-        </table>
+<div id="documents" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <section class="col-lg-12 cv">
+        <h4>votre cv</h4>
+        <section class="col-lg-9">
+            <table class="table-hover table_profil">
+                <tr>
+                    <td><?=$_SESSION['cv'];?></td>
+                    <td><a href="<?=get_stylesheet_directory_uri().'/assets/cvCRM/'. $_SESSION['cv']; ?>" target="_blank" >Voir</a> | <span class="modif_cv">Modifier</span></td>
+                </tr>
+            </table>
+        </section>
+        <section class="col-lg-9 upload_cv">
+            <form action="<?=$_SERVER['REQUEST_URI'];?>" method="post" class="form_telcv col-xs-12 col-sm-12 col-md-12 col-lg-12" enctype="multipart/form-data" >
+                <input type="file" name="cv" id="cv-coord">
+                <input type="submit" value="T&eacute;l&eacute;charger cv" name="submit_documents" class="submit_profil btn btn-primary col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            </form>
+        </section>
+        <script>
+            var modif_cv_button = $('span.modif_cv');
+            modif_cv_button.click(function(){
+                var show_cv_form = $('section.upload_cv');
+                show_cv_form.toggle("slow");
+            })
+        </script>
     </section>
-    <section class="col-lg-12 upload_cv">
-        <form action="<?=$_SERVER['REQUEST_URI'];?>" method="post" class="form_telcv col-xs-12 col-sm-5 col-md-5 col-lg-10" enctype="multipart/form-data" >
-            <input type="file" name="cv" id="cv-coord">
-            <input type="submit" value="T&eacute;l&eacute;charger cv" name="submit_documents" class="submit_profil btn btn-primary" />
-        </form>	
-    </section>
-    <script>
-        var modif_cv_button = $('span.modif_cv');
-        modif_cv_button.click(function(){
-            var show_cv_form = $('section.upload_cv');
-            show_cv_form.toggle("slow");
-        })
-    </script>
-</section>
+</div>
 <!---------------------------------------- Fin Compte ---------------------------------------------->
